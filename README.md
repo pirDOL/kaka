@@ -1,4 +1,4 @@
-# translation
+# Translation
 
 This repo contains articles about computer science, translated by myself, aiming to share with others as well as practice my poor reading abilities.
 
