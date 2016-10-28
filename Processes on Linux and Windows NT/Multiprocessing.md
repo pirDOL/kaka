@@ -1,0 +1,3 @@
+# [Multiprocessing](http://www.tldp.org/LDP/LG/issue23/flower/multiproc.html)
+
+目前我们考虑的机器都是只有一个处理器（又叫中央处理单元，Central Processor Unit）。时下更常见的机器拥有多达（4-30个）处理器，使得多任务是真正的并发执行。在这些机器上，调度器根据一定的策略调度进程的执行以最大化利用处理能力。非对称多处理器系统中，操作系统选择一个核运行操作系统代码，其他核运行用户任务。这种架构限制了操作系统向其他平台的移植。对称多处理器系统（SMP，Symmetric multiprocessing system），包括：Linux、Sun Solaris、Windows NT，允许操作系统运行在任意的核上，显然这样需要所有核共享内存。这些机器上的核心执行单元是线程，一个进程的多个线程可以在多个处理器上并发执行。SMP系统的机器上的调度任务会很复杂。
