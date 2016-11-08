@@ -1,0 +1,1 @@
+# [线程](http://www.tldp.org/LDP/LG/issue23/flower/threads.html)
