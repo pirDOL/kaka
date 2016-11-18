@@ -65,6 +65,80 @@ cgo工具默认关闭交叉编译，将CGO_ENABLED环境变量设置为1可以�
 当交叉编译时，你必须指定一个C交叉编译器，在构建工具链时通过设置CC_FOR_TARGET变量或者在运行cgo时设置环境变量CC都可以修改cgo使用的C编译器，同理C++交叉编译器对应的环境变量是CXX_FOR_TARGET和CXX。
 
 ### Go引用C
+Go文件中访问C结构体成员时需要在成员名字前面加下划线，例如x指向一个C结构体，该结构体有一个type成员，那么访问这个成员的方法是x.\_type。C结构体中不能被Go表示的字段会被忽略，然后补齐合适的长度直到下一个成员或者结构体结束，例如：bit和未对齐的数据（原文：*misaligned data*）。
+
+在Go中使用C标准数据类型：C.char、C.schar (signed char)、C.uchar (unsigned char)、C.short、C.ushort (unsigned short)、C.int、C.uint (unsigned int)、C.long、C.ulong (unsigned long)、C.longlong (long long)、C.ulonglong (unsigned long long)、C.float、C.double、C.complexfloat (complex float)、and C.complexdouble (complex double)。void*对应到Go中的unsafe Pointer，C的__int128和__uint128在Go中表示为[16]byte。
+
+访问结构体、联合体或者枚举时，在名字前加struct_、union_、enum_前缀，例如C.struct_stat，stat是一个C结构体。
+
+C的枚举类型在Go中以相同长度的[]byte存储，因为Go不支持C的联合体类型。
+
+Go结构体中不能嵌套C类型的字段。
+
+Go代码不能引用非空的C结构体末尾的零字节字段（原文：zero-sized fields that occur at the end of non-empty C structs）。Go唯一能做的是获取这个字段的地址，方法是在结构体的起始地址上加结构体的大小。
+
+cgo把C类型转换成对应的Go类型，这些Go类型是未导出的（原文：unexported Go types），所以Go包不应该在它对外的接口中暴露C类型，每个Go包中使用的C类型都是不一样的（注：这里应该是说从Go代码中看到的C类型名称会被mangle）。
+
+返回值为任何类型的C函数（包括返回void），都可以在多重赋值语句中同时获得返回值（如果有的话）和C的errno（使用“_”可以跳过返回值，当函数返回void时），例如：
+```go
+n, err = C.sqrt(-1)
+_, err := C.voidFunc()
+var n, err = C.sqrt(1)
+```
+
+通过C函数指针调用函数目前不支持，一种方法是声明一个Go变量保存C指针，然后在把它传递一个C函数，在这个C函数中通过指针调用C函数。
+```go
+package main
+
+// typedef int (*intFunc) ();
+//
+// int
+// bridge_int_func(intFunc f)
+// {
+//      return f();
+// }
+//
+// int fortytwo()
+// {
+//      return 42;
+// }
+import "C"
+import "fmt"
+
+func main() {
+    f := C.intFunc(C.fortytwo)
+    fmt.Println(int(C.bridge_int_func(f)))
+    // Output: 42
+}
+```
+
+C语言中当函数的形参类型是固定长度的数组时，实参应该是一个数组的第一个元素。C编译器能够在函数调用时识别并进行转换。但是Go不能这样做，必须显式的传递第一个元素的指针：C.f(&C.x[0])。
+
+下面是一些特殊的函数用于C和Go类型之间的转换，转换时会拷拷贝数据，伪代码定义如下：
+```go
+// Go string to C string
+// The C string is allocated in the C heap using malloc.
+// It is the caller's responsibility to arrange for it to be
+// freed, such as by calling C.free (be sure to include stdlib.h
+// if C.free is needed).
+func C.CString(string) *C.char
+
+// Go []byte slice to C array
+// The C array is allocated in the C heap using malloc.
+// It is the caller's responsibility to arrange for it to be
+// freed, such as by calling C.free (be sure to include stdlib.h
+// if C.free is needed).
+func C.CBytes([]byte) unsafe.Pointer
+
+// C string to Go string
+func C.GoString(*C.char) string
+
+// C data with explicit length to Go string
+func C.GoStringN(*C.char, C.int) string
+
+// C data with explicit length to Go []byte
+func C.GoBytes(unsafe.Pointer, C.int) []byte
+```
 
 ### C引用Go
 Go函数可以导出给C代码使用，对应的C代码如下：
