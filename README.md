@@ -9,6 +9,16 @@ This repo contains articles about computer science, translated by myself, aiming
 * [Bigtable: A Distributed Storage System for Structured Data]()
 * [Thrift: Scalable Cross-Language Services Implementation]()
 
+### [The Go Blog](https://blog.golang.org/)
+
+* [Go Slices usage and internals](The Go Blog/Go Slices usage and internals.md)
+* [C? Go? Cgo!](The Go Blog/C Go Cgo.md)
+* [Command cgo](The Go Blog/Command cgo.md)
+
+### C/C++
+
+* [6 Tips to supercharge C++11 vector performance](C&CPP/6 Tips to supercharge C++11 vector performance.md)
+
 ### [Process on Linux and Windows NT](http://www.tldp.org/LDP/LG/issue23/flower/page1.html)
 
 * [Introduction](Processes on Linux and Windows NT/Introduction.md)
@@ -26,8 +36,3 @@ This repo contains articles about computer science, translated by myself, aiming
 * [A Closer Look at Processes on the Linux Operating System](Processes on Linux and Windows NT/A Closer Look at Processes on the Linux Operating System.md)
 * [Bibliography](Processes on Linux and Windows NT/Bibliography.md)
 
-### [The Go Blog](https://blog.golang.org/)
-
-* [Go Slices usage and internals](The Go Blog/Go Slices usage and internals.md)
-* [C? Go? Cgo!](The Go Blog/C Go Cgo.md)
-* [Command cgo](The Go Blog/Command cgo.md)
