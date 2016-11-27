@@ -246,7 +246,7 @@ Average Using emplace_back :5254.64
 如果你喜欢这篇文章请分享。
 
 附：gcc4.8.2 centos4u3 linux2.6.32 2.1GHz E5-2620*2 4G RAM
-测试结果
+```
 Average Time to Fill Vector Without Reservation:5378.53
 Average Time to Fill Vector With Reservation:649.25
 Capacity Before Erasing Elements:16384
@@ -264,3 +264,4 @@ Average of Pushing in front of Vector :4.58529e+06
 Average of Pushing in front of list :1609.5
 Average Using push_back :6667.95
 Average Using emplace_back :6460.58
+```
