@@ -14,6 +14,7 @@ This repo contains articles about computer science, translated by myself, aiming
 * [Go Slices usage and internals](The Go Blog/Go Slices usage and internals.md)
 * [C? Go? Cgo!](The Go Blog/C Go Cgo.md)
 * [Command cgo](The Go Blog/Command cgo.md)
+* [Introducing the Go Race Detector](The Go Blog/Introducing the Go Race Detector.md)
 
 ### C/C++
 
