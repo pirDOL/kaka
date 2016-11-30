@@ -30,6 +30,14 @@ $ racy
 下面是两个被竞态条件检查器捕捉到的真实案例。
 
 #### Timer.Reset
+第一个案例是一个竞态条件检查器发现的真实bug的简化版本代码，代码中使用一个定时器，随机延时0-1秒后打印一个消息，重复这个操作持续5秒。使用[time.AfterFunc](http://golang.org/pkg/time/#AfterFunc)创建一个[Timer](http://golang.org/pkg/time/#Timer)打印第一条消息，然后使用[Reset](http://golang.org/pkg/time/#Timer.Reset)方法调度下一个消息，这样可以重用定时器。
+
+上面的代码看起来是符合逻辑的，但是在某些特定的场合下，代码会奇怪的失败。
+
+到底发生了什么？开启竞态条件检查器运行程序可以得到一些启示。竞态条件检查器指出了问题所在：对于变量t在不同的goroutine中发生了不同步的读写。如果randomDuration()初始化的定时间隔很短，time.AfterFunc()第二个参数定义的函数会先于main goroutine返回，这就意味着t.Reset()在t被赋值之前执行，此时t还是一个nil。
+
+修复这个竞态条件的方法是只从main goroutine中读写变量t。main goroutine全权负责设置和复位定时器t，增加的channel可以实现向main goroutine线程安全的传递复位定时器的请求。更简单但效率略低的方法是[不重用定时器](http://play.golang.org/p/kuWTrY0pS4)。
+
 ```go
 11 func main() {
 12     start := time.Now()
@@ -91,6 +99,22 @@ Goroutine 5 (running) created at:
 ```
 
 #### ioutil.Discard
+
+第二个例子更微秒。ioutil包的[Discard](http://golang.org/pkg/io/ioutil/#Discard)对象实现了[io.Writer](http://golang.org/pkg/io/#Writer)，实现把所有写入其中的数据丢弃。就好像/dev/null一样：它在你需要读取数据但又不想保存时使用，例如配合[io.Copy](http://golang.org/pkg/io/#Copy)排空一个reader。
+
+在2011年7月时，Go开发组就意识到像上面这样使用Discard效率很低：Copy函数每次调用时会分配一个32kB的内部buffer，在使用Discard时，这个buffer就是不必要的，因为我们并不像保存读到的数据。Discard理想的设计和使用不应该有这么大的开销。
+
+当时修复的方法很简单，如果writer实现了一个ReadFrom方法，io.Copy时会调用write的ReadFrom方法。我们给Discard实现了[ReadFrom](https://code.google.com/p/go/source/detail?r=13faa632ba3a#)方法，内部的buffer是所有Discard对象共享的，我们当时知道这里理论上是一个竞态条件，但是因为所有写入到buffer中的数据都应该丢弃，所以我们忽略了这个竞态条件。
+
+当竞态条件检查器被引入Go中时，它马上[把Discard的ReadFrom代码标记出来](https://code.google.com/p/go/issues/detail?id=3970)。我们再次考虑了这段代码可能存在的问题，最终决定这个竞态条件并不是真实存在的。为了消除这个竞态条件的报警，我们实现了一个[非竞态的版本](https://code.google.com/p/go/source/detail?r=1e55cf10aa4f)，这个版本只用于开启了竞态条件检查器时使用。
+
+但是一个月以后，[Brad](http://bradfitz.com/)遇到了[一个令人沮丧并且奇怪的bug](https://code.google.com/p/go/issues/detail?id=4589)。通过几天的追查，他把问题定位到一个由ioutil.Discard导致的竞态条件上。
+
+下面就是io/util中有竞态条件的代码，devNull是Discard的底层数据结构实现，所有的Discard对象共享一个buffer，即blackHole。
+
+Brad的程序实现了一个trackDigestReader类型，封装了io.Reader和读取到的数据的哈希摘要。例如：可以在读取一个文件的同时计算SHA-1摘要。但是在一些情况下，可能不需要保存读取到的文件数据，只需要计算文件的哈希，所以writer可以是一个ioutil.Discard。但是在这种情况下，blackHole就不再仅仅是一个黑洞了，从io.Reader中读取到的数据在写入到hash.Hash之前会暂时保存在这里面。如果多个goroutine同时计算文件的哈希，因为ioutil.Discard共享一个blackHole，竞态条件导致了在读文件和计算哈希之间，blackHole中的数据被写坏。这个问题不会导致error和panic发生，但是计算出来的哈希值是错的，太恶心了。
+
+上面的bug通过给每个ioutil.Discard一个buffer来[修复](https://code.google.com/p/go/source/detail?r=4b61f121966b)，消除了共享buffer中的竞态条件。
 
 ```go
 io.Copy(ioutil.Discard, reader)
