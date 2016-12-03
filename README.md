@@ -15,6 +15,7 @@ This repo contains articles about computer science, translated by myself, aiming
 * [C? Go? Cgo!](The Go Blog/C Go Cgo.md)
 * [Command cgo](The Go Blog/Command cgo.md)
 * [Introducing the Go Race Detector](The Go Blog/Introducing the Go Race Detector.md)
+* [Strings, bytes, runes and characters in Go](The Go Blog/Strings, bytes, runes and characters in Go.md)
 
 ### C/C++
 
