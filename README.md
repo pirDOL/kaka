@@ -10,6 +10,7 @@ p.s. Kaka is one of my friends, who used to be a translator in college.
 * [C? Go? Cgo!](The Go Blog/C Go Cgo.md)
 * [Command cgo](The Go Blog/Command cgo.md)
 * [Introducing the Go Race Detector](The Go Blog/Introducing the Go Race Detector.md)
+* [Arrays, slices (and strings): The mechanics of 'append'](The Go Blog/Arrays, slices \(and strings\) The mechanics of 'append'.md)
 * [Strings, bytes, runes and characters in Go](The Go Blog/Strings, bytes, runes and characters in Go.md)
 
 ### Papers
