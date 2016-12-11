@@ -63,7 +63,7 @@ slice2 := sliceHeader{
 我们还可以*reslice*，也就是根据一个slice创建一个新slice，然后把新slice保存到原来的slice变量中：`slice := slice[5:10]`，这样操作以后，slice变量的sliceHeader结构体会和slice2变量的一样。*reslice*使用很广泛，例如截断一个slice，`slice = slice[1:len(slice)-1]`丢弃slice的头尾两个元素。
 
 \[练习：写出*reslice*以后的sliceHeader结构体\]
-```
+```go
 slice := sliceHeader{
     Length:        3,
     ZerothElement: &buffer[106],
@@ -81,7 +81,7 @@ slice header中还有一个成员，我们下面会讨论到，但是先让我�
 在前面的例子中我们调用了IndexRune，slice header是以传值的方式传递的，这一点在不同的场景下会有不同的表现。（原文：That behavior has important ramifications.）
 
 看下面这个简单的函数，通过函数名就知道它的功能，使用`for range`按索引迭代slice，递增每个元素值。尽管slice header是以传值的方式传递的，但是header中包含了指向数组元素的指针，因此原始的slice header和传值拷贝后的header描述的是同一个数组。因此，当函数返回以后，通过原始的slice变量可以看到修改后的元素。
-```
+```go
 func AddOneToEachElement(slice []byte) {
     for i := range slice {
         slice[i]++
@@ -104,7 +104,7 @@ after [1 2 3 4 5 6 7 8 9 10]
 ```
 
 再看下面的例子，slice header指向的*数组内容*可以通过函数修改，但*header本身内容*不能。slice变量中保存的长度在调用函数SubtractOneFromLength以后并没有被修改，因为这个函数的实参是不是传入的slice变量，而是它的拷贝。如果想写一个函数修改slice header，需要把修改后的header以返回值的方式传递，就像下面的例子那样。这里传入的slice变量在调用函数以后没有被改变，但是返回值newSlice的长度是修改过的。
-```
+```go
 func SubtractOneFromLength(slice []byte) []byte {
     slice = slice[0 : len(slice)-1]
     return slice
@@ -163,7 +163,7 @@ func main() {
 （译者注：方法接收者实际上可以看作普通函数的一个参数，从指针类型修改为值类型，只能对值传递时拷贝的slice实现截断，但是原来的slice没有截断。）
 
 另一方面，如果需要实现一个方法把path中的小写字母转换成大写（忽略非英文字符），方法接收者可以是值类型，因为值传递的拷贝和原始slice都指向的是同一个底层数组。这里ToUpper方法使用了`for range`的第二个返回值，这样可以避免在循环体内写两次p[i]。
-```
+```go
 type path []byte
 
 func (p path) ToUpper() {
@@ -187,7 +187,7 @@ func main() {
 
 ### cap
 让我们看一下面的例子：向一个slice增加一个元素。通过前一节的讨论，这里应该理解为什么需要返回修改后的slice。观察运行结果发现slice增加到一定长度就不能增加了。
-```
+```go
 func Extend(slice []int, element int) []int {
     n := len(slice)
     slice = slice[0 : n+1]
@@ -322,7 +322,7 @@ func Extend(slice []int, element int) []int {
 ```
 
 在这个例子中，因为slice header可能被修改（重新分配时新slice描述的是一个不同的底层数组），所有需要返回新slice。下面是一小段代码用于展现当slice容量用满以后发生了什么：注意到起初slice的底层数组容量是5，当它填满以后，会分配一个新数组，对应的新slice的容量和数组元素地址都发生了改变。
-```
+```go
 slice := make([]int, 0, 5)
 for i := 0; i < 10; i++ {
     slice = Extend(slice, i)
@@ -476,7 +476,7 @@ sliceHeader{
 string实际上非常简单：它是只读的[]byte，除此之外，Go语言对string增加了一点额外的语法支持。
 
 因为是只读的，所以不需要容量（不能向string添加元素），大多数情况下你可以把string认为是只读的[]byte。对于初学者：索引string返回字节，可以对一个string创建slice得到子串。通过前面的讨论，现在应该很清楚对一个string创建slice发生了什么。
-```
+```go
 slash := "/usr/ken"[0] // yields the byte value '/'.
 usr := "/usr/ken"[0:4] // yields the string "/usr"
 ```

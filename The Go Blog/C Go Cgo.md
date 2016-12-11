@@ -1,5 +1,5 @@
 ## [C? Go? CGo!](https://blog.Golang.org/c-go-cgo)
-17 March 2011
+17 March 2011 By Andrew Gerrand
 
 ### 简介
 go支持Go调用c代码。用特定的规范编写Go的文件，go生成的Go文件和c文件可以被其他的Go包使用。
@@ -102,5 +102,3 @@ func Print(s string) {
 一个简单的、常用的基于cgo的包例子是Russ Cox的[gosqlite](https://code.google.com/archive/p/gosqlite/source)。另外，Go项目仪表盘上也列出了[几个其他cgo包](https://godashboard.appspot.com/project?tag=cgo)。
 
 最后，如果你想了解所有这些内部是如何工作的，请阅读一下runtime包的[cgocall.go](https://golang.org/src/runtime/cgocall.go)代码开头的注释。
-
-By Andrew Gerrand

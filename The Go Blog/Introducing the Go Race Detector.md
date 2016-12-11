@@ -1,5 +1,5 @@
 ## [Introducing the Go Race Detector](https://blog.golang.org/race-detector)
-26 June 2013
+26 June 2013 By Dmitry Vyukov and Andrew Gerrand
 
 ### 简介
 
@@ -170,5 +170,3 @@ func (t trackDigestReader) Read(p []byte) (n int, err error) {
 竞态条件检查器是一个强大的工具，可以对并发程序的正确性进行检查。它不会误报，所以对于它的警告要严肃对待。但是它的运行结果是取决于你的测试条件的，必须保证你的代码在测试时构造了完整的并发场景，这样竞态条件检查器才能发挥它的功能。
 
 你还在等等什么？马上在你的代码上运行`go test -race`吧！
-
-By Dmitry Vyukov and Andrew Gerrand

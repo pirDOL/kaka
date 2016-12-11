@@ -1,6 +1,5 @@
 ## [Strings, bytes, runes and characters in Go](https://blog.golang.org/strings)
-23 October 2013
-By Rob Pike
+23 October 2013 By Rob Pike
 
 ### 简介
 [上一篇blog](http://blog.golang.org/slices)解释了Go的slice的工作原理，通过一系列的例子说明了它内部实现机制。在此基础上，这篇blog会讨论Go的string。尽管看起来，string作为博客的主题有点太简单了，但是如果想正确的使用它，需要了解它的内部实现以及byte、character和rune的区别，unicode和utf-8、string和string literal等等，还有更多微秒的区别。

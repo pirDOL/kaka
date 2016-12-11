@@ -1,5 +1,5 @@
 ## [Go Slices: usage and internals](https://blog.golang.org/go-slices-usage-and-internals)
-5 January 2011
+5 January 2011 By Andrew Gerrand
 
 ### 简介
 go语言的slice类型提供了一种方便、高效的方法来管理某种类型数据的序列。slice类似于其他语言中的数组，但是slice也有许多特有的属性。这篇文章会介绍slice是什么以及如何使用它们。
@@ -254,5 +254,3 @@ func CopyDigits(filename string) []byte {
 
 ### 更多阅读
 [Effective Go](http://golang.org/doc/effective_go.html)包含了slice和array的深入讨论，[Go语言语法](http://golang.org/doc/go_spec.html)定义了slice以及相关的helper函数。
-
-By Andrew Gerrand
