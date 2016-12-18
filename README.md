@@ -6,12 +6,13 @@ p.s. Kaka is one of my friends, who used to be a translator in college.
 
 ### [The Go Blog](https://blog.golang.org/)
 
-* [Go Slices usage and internals](The Go Blog/Go Slices usage and internals.md)
-* [C? Go? Cgo!](The Go Blog/C Go Cgo.md)
 * [Command cgo](The Go Blog/Command cgo.md)
-* [Introducing the Go Race Detector](The Go Blog/Introducing the Go Race Detector.md)
+* [C? Go? Cgo!](The Go Blog/C Go Cgo.md)
+* [Go Slices usage and internals](The Go Blog/Go Slices usage and internals.md)
 * [Arrays, slices (and strings): The mechanics of 'append'](The Go Blog/Arrays, slices \(and strings\) The mechanics of 'append'.md)
 * [Strings, bytes, runes and characters in Go](The Go Blog/Strings, bytes, runes and characters in Go.md)
+* [Introducing the Go Race Detector](The Go Blog/Introducing the Go Race Detector.md)
+* [The Laws of Reflection](The Go Blog/The Laws of Reflection.md)
 
 ### Papers
 
