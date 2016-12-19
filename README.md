@@ -13,7 +13,7 @@ p.s. Kaka is one of my friends, who used to be a translator in college.
 * [Strings, bytes, runes and characters in Go](The Go Blog/Strings, bytes, runes and characters in Go.md)
 * [Introducing the Go Race Detector](The Go Blog/Introducing the Go Race Detector.md)
 * [The Laws of Reflection](The Go Blog/The Laws of Reflection.md)
-* [Go Concurrency Patterns: Timing out, moving on](The Go Blog/Go Concurrency Patterns: Timing out, moving on.md)
+* [Go Concurrency Patterns: Timing out, moving on](The Go Blog/Go Concurrency Patterns Timing out, moving on.md)
 
 ### Papers
 
