@@ -14,6 +14,7 @@ p.s. Kaka is one of my friends, who used to be a translator in college.
 * [Introducing the Go Race Detector](The Go Blog/Introducing the Go Race Detector.md)
 * [The Laws of Reflection](The Go Blog/The Laws of Reflection.md)
 * [Go Concurrency Patterns: Timing out, moving on](The Go Blog/Go Concurrency Patterns Timing out, moving on.md)
+* [Defer, Panic, and Recover](The Go Blog/Defer, Panic, and Recover.md)
 
 ### Papers
 
