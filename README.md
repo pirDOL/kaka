@@ -15,12 +15,14 @@ p.s. Kaka is one of my friends, who used to be a translator in college.
 * [The Laws of Reflection](The Go Blog/The Laws of Reflection.md)
 * [Go Concurrency Patterns: Timing out, moving on](The Go Blog/Go Concurrency Patterns Timing out, moving on.md)
 * [Defer, Panic, and Recover](The Go Blog/Defer, Panic, and Recover.md)
+* [Error handling and Go](The Go Blog/Error handling and Go.md)
 
 ### Papers
 
 * [Dapper: a Large-Scale Distributed Systems Tracing Infrastructure](Papers/Dapper a Large-Scale Distributed Systems Tracing Infrastructure.md)
 * [MapReduce: Simplified Data Processing on Large Clusters](Papers/MapReduce Simplified Data Processing on Large Clusters.md)
-* [Bigtable: A Distributed Storage System for Structured Data]()
+* [Bigtable: A Distributed Storage System for Structured Data](Papers/Bigtable A Distributed Storage System for Structured Data.md)
+* [The Google File System](Papers/The Google File System.md)
 * [Thrift: Scalable Cross-Language Services Implementation]()
 
 ### Misc
