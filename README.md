@@ -19,11 +19,12 @@ p.s. Kaka is one of my friends, who used to be a translator in college.
 
 ### Papers
 
-* [Dapper: a Large-Scale Distributed Systems Tracing Infrastructure](Papers/Dapper a Large-Scale Distributed Systems Tracing Infrastructure.md)
 * [MapReduce: Simplified Data Processing on Large Clusters](Papers/MapReduce Simplified Data Processing on Large Clusters.md)
-* [Bigtable: A Distributed Storage System for Structured Data](Papers/Bigtable A Distributed Storage System for Structured Data.md)
 * [The Google File System](Papers/The Google File System.md)
-* [Thrift: Scalable Cross-Language Services Implementation]()
+* [Bigtable: A Distributed Storage System for Structured Data](Papers/Bigtable A Distributed Storage System for Structured Data.md)
+* [Dapper: a Large-Scale Distributed Systems Tracing Infrastructure](Papers/Dapper a Large-Scale Distributed Systems Tracing Infrastructure.md)
+* [Large-scale cluster management at Google with Borg](Papers/Large-scale cluster management at Google with Borg.md)
+* [Thrift: Scalable Cross-Language Services Implementation](Papers/Thrift Scalable Cross-Language Services Implementation.md)
 
 ### Misc
 
