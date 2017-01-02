@@ -15,6 +15,8 @@ p.s. Kaka is one of my friends, who used to be a translator in college.
 * [Error handling and Go](The Go Blog/Error handling and Go.md)
 * [Defer, Panic, and Recover](The Go Blog/Defer, Panic, and Recover.md)
 * [Introducing the Go Race Detector](The Go Blog/Introducing the Go Race Detector.md)
+* [Share Memory By Communicating](The Go Blog/Share Memory By Communicating.md)
+* [Go Concurrency Patterns: Pipelines and cancellation](The Go Blog/Go Concurrency Patterns Pipelines and cancellation.md)
 * [Go Concurrency Patterns: Context](The Go Blog/Go Concurrency Patterns Context.md)
 * [Go Concurrency Patterns: Timing out, moving on](The Go Blog/Go Concurrency Patterns Timing out, moving on.md)
 
