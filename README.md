@@ -31,5 +31,6 @@ p.s. Kaka is one of my friends, who used to be a translator in college.
 
 ### Misc
 
-* [6 Tips to supercharge C++11 vector performance](misc/6 Tips to supercharge C++11 vector performance.md)
-* [Process on Linux and Windows NT](misc/Processes on Linux and Windows NT.md)
+* [6 Tips to supercharge C++11 vector performance](Misc/6 Tips to supercharge C++11 vector performance.md)
+* [Understanding Reactor Pattern: Thread-Based and Event-Driven](Misc/Understanding Reactor Pattern Thread-Based and Event-Driven.md)
+* [Process on Linux and Windows NT](Misc/Processes on Linux and Windows NT.md)
