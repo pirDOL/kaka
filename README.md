@@ -34,3 +34,4 @@ p.s. Kaka is one of my friends, who used to be a translator in college.
 * [6 Tips to supercharge C++11 vector performance](Miscellaneous/6 Tips to supercharge C++11 vector performance.md)
 * [Understanding Reactor Pattern: Thread-Based and Event-Driven](Miscellaneous/Understanding Reactor Pattern Thread-Based and Event-Driven.md)
 * [Process on Linux and Windows NT](Miscellaneous/Processes on Linux and Windows NT.md)
+* [Visual Representation of SQL Joins](Miscellaneous/Visual Representation of SQL Joins.md)
