@@ -19,6 +19,7 @@ p.s. Kaka is one of my friends, who used to be a translator in college.
 * [Go Concurrency Patterns: Pipelines and cancellation](The Go Blog/Go Concurrency Patterns Pipelines and cancellation.md)
 * [Go Concurrency Patterns: Context](The Go Blog/Go Concurrency Patterns Context.md)
 * [Go Concurrency Patterns: Timing out, moving on](The Go Blog/Go Concurrency Patterns Timing out, moving on.md)
+* [Death of goroutines under control](The Go Blog/Death of goroutines under control.md)
 
 ### Papers
 
