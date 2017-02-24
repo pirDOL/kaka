@@ -39,3 +39,4 @@ p.s. Kaka is one of my friends, who used to be a translator in college.
 * [Process on Linux and Windows NT](Miscellaneous/Processes on Linux and Windows NT.md)
 * [Visual Representation of SQL Joins](Miscellaneous/Visual Representation of SQL Joins.md)
 * [Automatically Locate When and Where Bugs Were Introduced with git bisect](Miscellaneous/Automatically Locate When and Where Bugs Were Introduced with git bisect.md)
+* [Git for Computer Scientists](Miscellaneous/Git for Computer Scientists.md)
