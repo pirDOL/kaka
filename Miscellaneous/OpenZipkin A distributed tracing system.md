@@ -179,8 +179,223 @@ Zipkin最初使用Cassandra存储数据，因为Cassandra具有良好的可扩�
 |Scala|[akka-tracing](https://github.com/levkhomich/akka-tracing)|[Akka](https://akka.io/), [Spray](https://spray.io/), [Play](https://www.playframework.com/)|Http (B3), Thrift|Scribe|Yes|Java 6+, Scala 2.10+, activator templates for Akka and Play
 
 ### 5 Data Model
+为了说明Zipkin展现的追踪数据，我们会结合一个具体的Zipkin数据模型，通过比较UI展现追踪结果以及这份结果对应的具体数据，我们发现：
+
+* 上下游模块位于不同的span中
+* 如果一个span中有cs标记，那么这个span会记录一个key为sa的annotation，用于表示这个span的下游。这样做是为了当下游不支持追踪时（例如MySQL），尽可能多的追踪信息。
+
+首先我们从UI上看到追踪数据：
+
+![](OpenZipkin A distributed tracing system/3.png)
+
+等效的追踪数据的Zipkin数据模型：
+```json
+[
+    {
+      "traceId": "bd7a977555f6b982",
+      "name": "get",
+      "id": "bd7a977555f6b982",
+      "timestamp": 1458702548467000,
+      "duration": 386000,
+      "annotations": [
+        {
+          "endpoint": {
+            "serviceName": "zipkin-query",
+            "ipv4": "192.168.1.2",
+            "port": 9411
+          },
+          "timestamp": 1458702548467000,
+          "value": "sr"
+        },
+        {
+          "endpoint": {
+            "serviceName": "zipkin-query",
+            "ipv4": "192.168.1.2",
+            "port": 9411
+          },
+          "timestamp": 1458702548853000,
+          "value": "ss"
+        }
+      ],
+      "binaryAnnotations": []
+    },
+    {
+      "traceId": "bd7a977555f6b982",
+      "name": "get-traces",
+      "id": "ebf33e1a81dc6f71",
+      "parentId": "bd7a977555f6b982",
+      "timestamp": 1458702548478000,
+      "duration": 354374,
+      "annotations": [],
+      "binaryAnnotations": [
+        {
+          "key": "lc",
+          "value": "JDBCSpanStore",
+          "endpoint": {
+            "serviceName": "zipkin-query",
+            "ipv4": "192.168.1.2",
+            "port": 9411
+          }
+        },
+        {
+          "key": "request",
+          "value": "QueryRequest{serviceName=zipkin-query, spanName=null, annotations=[], binaryAnnotations={}, minDuration=null, maxDuration=null, endTs=1458702548478, lookback=86400000, limit=1}",
+          "endpoint": {
+            "serviceName": "zipkin-query",
+            "ipv4": "192.168.1.2",
+            "port": 9411
+          }
+        }
+      ]
+    },
+    {
+      "traceId": "bd7a977555f6b982",
+      "name": "query",
+      "id": "be2d01e33cc78d97",
+      "parentId": "ebf33e1a81dc6f71",
+      "timestamp": 1458702548786000,
+      "duration": 13000,
+      "annotations": [
+        {
+          "endpoint": {
+            "serviceName": "zipkin-query",
+            "ipv4": "192.168.1.2",
+            "port": 9411
+          },
+          "timestamp": 1458702548786000,
+          "value": "cs"
+        },
+        {
+          "endpoint": {
+            "serviceName": "zipkin-query",
+            "ipv4": "192.168.1.2",
+            "port": 9411
+          },
+          "timestamp": 1458702548799000,
+          "value": "cr"
+        }
+      ],
+      "binaryAnnotations": [
+        {
+          "key": "jdbc.query",
+          "value": "select distinct `zipkin_spans`.`trace_id` from `zipkin_spans` join `zipkin_annotations` on (`zipkin_spans`.`trace_id` = `zipkin_annotations`.`trace_id` and `zipkin_spans`.`id` = `zipkin_annotations`.`span_id`) where (`zipkin_annotations`.`endpoint_service_name` = ? and `zipkin_spans`.`start_ts` between ? and ?) order by `zipkin_spans`.`start_ts` desc limit ?",
+          "endpoint": {
+            "serviceName": "zipkin-query",
+            "ipv4": "192.168.1.2",
+            "port": 9411
+          }
+        },
+        {
+          "key": "sa",
+          "value": true,
+          "endpoint": {
+            "serviceName": "spanstore-jdbc",
+            "ipv4": "127.0.0.1",
+            "port": 3306
+          }
+        }
+      ]
+    },
+    {
+      "traceId": "bd7a977555f6b982",
+      "name": "query",
+      "id": "13038c5fee5a2f2e",
+      "parentId": "ebf33e1a81dc6f71",
+      "timestamp": 1458702548817000,
+      "duration": 1000,
+      "annotations": [
+        {
+          "endpoint": {
+            "serviceName": "zipkin-query",
+            "ipv4": "192.168.1.2",
+            "port": 9411
+          },
+          "timestamp": 1458702548817000,
+          "value": "cs"
+        },
+        {
+          "endpoint": {
+            "serviceName": "zipkin-query",
+            "ipv4": "192.168.1.2",
+            "port": 9411
+          },
+          "timestamp": 1458702548818000,
+          "value": "cr"
+        }
+      ],
+      "binaryAnnotations": [
+        {
+          "key": "jdbc.query",
+          "value": "select `zipkin_spans`.`trace_id`, `zipkin_spans`.`id`, `zipkin_spans`.`name`, `zipkin_spans`.`parent_id`, `zipkin_spans`.`debug`, `zipkin_spans`.`start_ts`, `zipkin_spans`.`duration` from `zipkin_spans` where `zipkin_spans`.`trace_id` in (?)",
+          "endpoint": {
+            "serviceName": "zipkin-query",
+            "ipv4": "192.168.1.2",
+            "port": 9411
+          }
+        },
+        {
+          "key": "sa",
+          "value": true,
+          "endpoint": {
+            "serviceName": "spanstore-jdbc",
+            "ipv4": "127.0.0.1",
+            "port": 3306
+          }
+        }
+      ]
+    },
+    {
+      "traceId": "bd7a977555f6b982",
+      "name": "query",
+      "id": "37ee55f3d3a94336",
+      "parentId": "ebf33e1a81dc6f71",
+      "timestamp": 1458702548827000,
+      "duration": 2000,
+      "annotations": [
+        {
+          "endpoint": {
+            "serviceName": "zipkin-query",
+            "ipv4": "192.168.1.2",
+            "port": 9411
+          },
+          "timestamp": 1458702548827000,
+          "value": "cs"
+        },
+        {
+          "endpoint": {
+            "serviceName": "zipkin-query",
+            "ipv4": "192.168.1.2",
+            "port": 9411
+          },
+          "timestamp": 1458702548829000,
+          "value": "cr"
+        }
+      ],
+      "binaryAnnotations": [
+        {
+          "key": "jdbc.query",
+          "value": "select `zipkin_annotations`.`trace_id`, `zipkin_annotations`.`span_id`, `zipkin_annotations`.`a_key`, `zipkin_annotations`.`a_value`, `zipkin_annotations`.`a_type`, `zipkin_annotations`.`a_timestamp`, `zipkin_annotations`.`endpoint_ipv4`, `zipkin_annotations`.`endpoint_port`, `zipkin_annotations`.`endpoint_service_name` from `zipkin_annotations` where `zipkin_annotations`.`trace_id` in (?) order by `zipkin_annotations`.`a_timestamp` asc, `zipkin_annotations`.`a_key` asc",
+          "endpoint": {
+            "serviceName": "zipkin-query",
+            "ipv4": "192.168.1.2",
+            "port": 9411
+          }
+        },
+        {
+          "key": "sa",
+          "value": true,
+          "endpoint": {
+            "serviceName": "spanstore-jdbc",
+            "ipv4": "127.0.0.1",
+            "port": 3306
+          }
+        }
+      ]
+    }
+  ]  
+```
 
 ### 6 Instrumenting a library
 
 ### 7 Transports
-
+传输用于从被追踪的服务中收集span，并把它们转化为Zipkin的标准span格式，然后发给存储层，传输通路模块化实现了支持不同格式的追踪数据生产者，Zipkin支持HTTP、kafka和Scribe三种传输格式。
