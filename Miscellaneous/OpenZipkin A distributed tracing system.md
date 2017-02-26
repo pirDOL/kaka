@@ -141,6 +141,42 @@ Zipkin最初使用Cassandra存储数据，因为Cassandra具有良好的可扩�
 我们开发了一个GUI为查看追踪信息提供了美观的使用界面。Web UI提供了按照服务、时间、annotation等维度查看追踪数据的方法。注意：UI中未实现用户权限的认证功能。
 
 ### 4 Existing instrumentations
+追踪数据是通过每台机器上的追踪程序库收集并且发送到Zipkin的。当一个应用程序请求另一个应用程序时，追踪标识符会通过请求传递到另一个应用程序，这样Zipkin才能将一个请求经过的所有应用程序上的追踪数据通过追踪标识符组织成若干个span。
+
+下面介绍一下目前Zipkin支持的不同平台上的追踪程序库，使用它们请阅读相应的文档。
+
+#### 4.1 OpenZipkin追踪程序库
+下面的追踪程序库是由OpenZipkin作者维护的，代码一同托管在[OpenZipkin的Github项目组](https://github.com/openzipkin/)、在[Zipkin gitter](https://gitter.im/openzipkin/zipkin/)可以联系到这些库的作者。
+
+|语言|库|框架|追踪标识符传递|传输方式|采样|其他|
+|----|--|----|--------------|--------|----|----|
+|Go|[zipkin-go-opentracing](https://github.com/openzipkin/zipkin-go-opentracing)|[Go kit](https://gokit.io/), or roll your own with [OpenTracing](http://opentracing.io/)|Http (B3), gRPC (B3)|Http, Kafka, Scribe|Yes||
+|Java|[brave](https://github.com/openzipkin/brave)|Jersey, RestEASY, JAXRS2, Apache HttpClient, Mysql|Http (B3), gRPC (B3)|Http, Kafka, Scribe|Yes|Java 6 or higher|
+|JavaScript|[zipkin-js](https://github.com/openzipkin/zipkin-js)|[cujoJS](http://cujojs.com/), [express](http://expressjs.com/), [restify](http://restify.com/)|Http (B3)|Http, Kafka, Scribe|Yes|Uses continuation-local-storage under to hood, so you don’t have to pass around an explicit context|
+|Ruby|[zipkin-ruby](https://github.com/openzipkin/zipkin-ruby)|[Rack](http://rack.github.io/)|Http (B3)|Http, Kafka, Scribe|Yes|lc support. Ruby 2.0 or higher|
+|Scala|[zipkin-finagle](https://github.com/openzipkin/zipkin-finagle)|[Finagle](https://github.com/twitter/finagle)|Http (B3), Thrift|Http, Kafka, Scribe|Yes|Library is written in Java. Propagation is defined in Finagle itself.|
+
+#### 4.2 社区开发的追踪程序库
+如果这里缺少了哪个库，请向[本网页的Github](https://github.com/openzipkin/openzipkin.github.io)提交pull reuqest补充。
+
+如果想要自己开发另一个框架或者平台的追踪程序库，请阅读文档[追踪程序库](http://zipkin.io/pages/instrumenting)
+
+|语言|库|框架|追踪标识符传递|传输方式|采样|其他|
+|----|--|----|--------------|--------|----|----|
+|C#|[ZipkinTracerModule](https://github.com/mdsol/Medidata.ZipkinTracerModule)|OWIN, HttpHandler|Http (B3)|Http|Yes|lc support. 4.5.2 or higher
+|C#|[Zipkin4net](https://github.com/criteo/zipkin4net)|Any|Http (B3)|Any|Yes| 
+|Go|[go-zipkin](https://github.com/elodina/go-zipkin)|x/net Context| ||Kafka|Yes| 
+|Go|[monkit-zipkin](https://github.com/spacemonkeygo/monkit-zipkin/)|[Monkit](https://github.com/spacemonkeygo/monkit/)|Http (B3), easy to add others|Scribe, UDP, easy to add others|Yes| 
+|Java|[cassandra-zipkin-tracing](https://github.com/thelastpickle/cassandra-zipkin-tracing)|[Apache Cassandra](http://cassandra.apache.org/)|CQL (B3)|Http, Kafka, Scribe|Yes|Java 8+
+|Java|[Dropwizard Zipkin](https://github.com/smoketurner/dropwizard-zipkin)|[Dropwizard](http://www.dropwizard.io/)|Http (B3), Thrift|Http, Scribe|Yes|Java 7 or higher
+|Java|[htrace](https://github.com/apache/incubator-htrace/tree/master/htrace-zipkin)|HDFS, HBase||Http, Scribe| |Yes|Java 7 or higher
+|Java|[Spring Cloud Sleuth](https://github.com/spring-cloud/spring-cloud-sleuth)|Spring, Spring Cloud (e.g. Stream, Netflix)|Http (B3), Messaging (B3)|Http, Spring Cloud Stream Compatible (e.g. RabbitMQ, Kafka, Redis or anything with a custom Binder)|Yes|Java 7 or higher
+|Java|[Wingtips](https://github.com/Nike-Inc/wingtips)|[Any Servlet API framework](https://github.com/Nike-Inc/wingtips/tree/master/wingtips-servlet-api), [roll-your-own](https://github.com/Nike-Inc/wingtips#generic-application-pseudo-code), [async framework support](https://github.com/Nike-Inc/wingtips#usage-in-reactive-asynchronous-nonblocking-scenarios)|Http (B3)|Http|Yes|Java 7 or higher, [SLF4J MDC support](https://github.com/Nike-Inc/wingtips#mdc_info) for auto-tagging all log messages with tracing info
+|Python|[py_zipkin](https://github.com/Yelp/py_zipkin)|Any|Http (B3)|Pluggable|Yes|Generic python tracer, used in pyramid-zipkin; py2, py3 support.
+|Python|[pyramid_zipkin](https://github.com/Yelp/pyramid_zipkin)|[Pyramid](http://docs.pylonsproject.org/projects/pyramid/en/latest/)|Http (B3)|Kafka, Scribe|Yes|py2, py3 support.
+|Python|[swagger_zipkin](https://github.com/Yelp/swagger_zipkin)|Swagger ([Bravado](http://bravado.readthedocs.io/en/latest/)), to be used with py_zipkin|Http (B3)|Kafka, Scribe|Yes|Uses py_zipkin; py2, py3 support.
+|Python|[flask_zipkin](https://github.com/qiajigou/flask-zipkin)|[Flask](http://flask.pocoo.org/)|Http (B3)|Pluggable|Yes|Uses py_zipkin; py2, py3 support.
+|Scala|[akka-tracing](https://github.com/levkhomich/akka-tracing)|[Akka](https://akka.io/), [Spray](https://spray.io/), [Play](https://www.playframework.com/)|Http (B3), Thrift|Scribe|Yes|Java 6+, Scala 2.10+, activator templates for Akka and Play
 
 ### 5 Data Model
 
