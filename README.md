@@ -35,9 +35,12 @@ p.s. Kaka is one of my friends, who used to be a translator in college.
 ### Miscellaneous
 
 * [6 Tips to supercharge C++11 vector performance](Miscellaneous/6 Tips to supercharge C++11 vector performance.md)
+* [Top 10 dumb mistakes to avoid with C++ 11 smart pointers](Miscellaneous/Top 10 dumb mistakes to avoid with C++ 11 smart pointers.md)
 * [Understanding Reactor Pattern: Thread-Based and Event-Driven](Miscellaneous/Understanding Reactor Pattern Thread-Based and Event-Driven.md)
 * [Process on Linux and Windows NT](Miscellaneous/Processes on Linux and Windows NT.md)
 * [Visual Representation of SQL Joins](Miscellaneous/Visual Representation of SQL Joins.md)
 * [Automatically Locate When and Where Bugs Were Introduced with git bisect](Miscellaneous/Automatically Locate When and Where Bugs Were Introduced with git bisect.md)
 * [Git for Computer Scientists](Miscellaneous/Git for Computer Scientists.md)
 * [OpenZipkin A distributed tracing system](Miscellaneous/OpenZipkin A distributed tracing system.md)
+* [TCP client self connect](Miscellaneous/TCP client self connect.md)
+* [Understanding HBase and BigTable](Miscellaneous/Understanding HBase and BigTable.md)
