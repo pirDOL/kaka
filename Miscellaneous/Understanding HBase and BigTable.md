@@ -32,7 +32,7 @@ Hbase和Bigtable本质上是一个[map](http://en.wikipedia.org/wiki/Associative
 维基百科对map的定义是：一个抽象的数据类型，由一个key的集合和一个value的集合组成，每一个key对应一个value。
 
 用[JSON](http://en.wikipedia.org/wiki/JSON)举个例子，下边的是一个简单的map，所有的value都是字符串：
-```json
+```
 {
     "zzzzz" : "woot",
     "xyz" : "hello",
@@ -58,13 +58,13 @@ Hbase建立在[Hadoop的分布式文件系统（HDFS）](http://hadoop.apache.or
 不同于大部分的map的实现，在Hbase/Bigtable中键值严格按照字母表排序，就是说key为`aaaaa`的数据行的下一个行的key应该是`aaaab`，并且离key为`zzzzz`的数据行很远
 
 继续我们的JSON例子，排序的版本像这样：
-```json
+```
 {
-　　"1" : "x",
-　　"aaaaa" : "y",
-　　"aaaab" : "world",
-　　"xyz" : "hello",
-　　"zzzzz" : "woot"
+    "1" : "x",
+    "aaaaa" : "y",
+    "aaaab" : "world",
+    "xyz" : "hello",
+    "zzzzz" : "woot"
 }
 ```
 
@@ -80,28 +80,28 @@ Hbase建立在[Hadoop的分布式文件系统（HDFS）](http://hadoop.apache.or
 目前我们还没有提到“列”的概念，我们用常规的hashmap概念来理解Bigtable，这样做是有目的，因为“列”这个词像“表”和“库”一样是另一个沉重的单词，承担了多年的关系型数据库经验的感情包袱。
 
 然而，我发现它可以非常简单的将它（译者注：指的是“列”）看做一个多维度的map（如果愿意的话你可以看成嵌套的map）。添加一个维度到我们的JSON例子中的话，就成了下边这个样子：
-```json
+```
 {
-　　"1" : {
-　　"A" : "x",
-　　"B" : "z"
-　　},
-　　"aaaaa" : {
-　　"A" : "y",
-　　"B" : "w"
-　　},
-　　"aaaab" : {
-　　"A" : "world",
-　　"B" : "ocean"
-　　},
-　　"xyz" : {
-　　"A" : "hello",
-　　"B" : "there"
-　　},
-　　"zzzzz" : {
-　　"A" : "woot",
-　　"B" : "1337"
-　　}
+  "1" : {
+    "A" : "x",
+    "B" : "z"
+  },
+  "aaaaa" : {
+    "A" : "y",
+    "B" : "w"
+  },
+  "aaaab" : {
+    "A" : "world",
+    "B" : "ocean"
+  },
+  "xyz" : {
+    "A" : "hello",
+    "B" : "there"
+  },
+  "zzzzz" : {
+    "A" : "woot",
+    "B" : "1337"
+  }
 }
 ```
 
@@ -110,7 +110,7 @@ Hbase建立在[Hadoop的分布式文件系统（HDFS）](http://hadoop.apache.or
 表的列族在创建表的时候指定，并且以后难以或者说不可能被修改。另外，添加一个列族也是开销很大的操作。所以如果你需要多少列簇，在一开始就一次性指定是一个很好的主意。
 
 幸运的是，一个列族可能有任意个数量的列，在Hbase中被称为`qualifier`或者`label`。下边又是一个JSON例子，这次增加了列标记维度：
-```json
+```
 {
   // ...
   "aaaaa" : {
@@ -140,7 +140,7 @@ Hbase建立在[Hadoop的分布式文件系统（HDFS）](http://hadoop.apache.or
 当从Hbase/Bigtable查询数据时，必须提供完整的列名，格式为`<family>:<qualifier>`，举个例子，上边的例子中完整的列名为：`A:foo`、`A:bar`、`B:`。
 
 注意，虽然列族是不变的，但是列是可变的。考虑以下扩展的数据行：
-```json
+```
 {
   // ...
   "zzzzz" : {
@@ -154,7 +154,7 @@ Hbase建立在[Hadoop的分布式文件系统（HDFS）](http://hadoop.apache.or
 在这个例子中，数据行`zzzzz`有一列：`A:catch_phrase`。因为每行可能有任意多的不同的列，因此没有内置的方法来查询所有行中的所有列。如果真的需要这些信息，需要去做一个全表扫描。但是可以查询所有的列族，因为列族是不可变的。
 
 最后一个维度是时间。所有的数据都是有版本的，不管是整数的时间戳，还是你自己选择的其他整数。客户端会在插入数据的时候指定时间戳。考虑以下的例子，使用任意的整数时间戳：
-```json
+```
 {
   // ...
   "aaaaa" : {
