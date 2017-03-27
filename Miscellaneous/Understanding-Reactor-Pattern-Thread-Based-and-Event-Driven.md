@@ -10,7 +10,7 @@
 
 为了调整出最佳性能的线程数量，并且避免线程创建和销毁的开销，通常的实践中会通过分发线程、有限长度的阻塞队列以及线程池实现。分发线程阻塞在套接字上，新的连接到达放入阻塞队列。队列长度有限包含两个含义：首先，如果阻塞队列中的连接数超限，新的连接将会被丢弃；其次，对于进入阻塞队列中的请求，它被处理的延时是确定并且可估计的（译者注：最大延时=队列长度×平均响应时间÷线程数）。线程池中的空闲线程会轮询队列，从中读取新的请求，处理并返回结果。
 
-![](Understanding Reactor Pattern Thread-Based and Event-Driven/1.png)
+![](Understanding-Reactor-Pattern-Thread-Based-and-Event-Driven/1.png)
 
 ### 事件驱动架构
 
@@ -34,16 +34,16 @@
 
 反应器模式可以实现同步的多路复用，同步是指按照事件到达的顺序分发处理。反应器 接收来自不同的客户端的消息、请求和连接，尽管客户端是并发的，但是反应器可以按照事件到达的顺序触发回调函数。因此，反应器模式中不需要为每个事件都创建一个线程，这个问题的实质和著名的[C10K问题](http://www.kegel.com/c10k.html)是相同的，换言之反应器模式是这个问题的一个解决思路。
 
-![](Understanding Reactor Pattern Thread-Based and Event-Driven/2.png)
+![](Understanding-Reactor-Pattern-Thread-Based-and-Event-Driven/2.png)
 
 总结：在需要并发处理多于10k的客户端的服务器场景下，使用Tomcat、Glassfish、JBoss、HttpClient等框架是不能实现线程的可伸缩的（译者注：这里是指每个连接一个线程，不能无限制的增加线程来应对请求量的增长）。相反，使用反应器模式的服务器，只需要一个线程同步处理并发的请求。
 >In Summary: Servers have to handle more than 10,000 concurrent clients, and threads cannot scale the connections using Tomcat, Glassfish, JBoss, or HttpClient. So, the application using the reactor only needs to use a thread to handle simultaneous events.
 
-![](Understanding Reactor Pattern Thread-Based and Event-Driven/3.png)
+![](Understanding-Reactor-Pattern-Thread-Based-and-Event-Driven/3.png)
 
 多路选择器是一种电路，它有一个输入和多个输出，通常的使用场景是需要把一个信号传递给多个电路设备。多路选择器和译码器有些类似，二者的区别是多路选择器用于传递信号，而译码器用于从多个电路设备选择一个（译者注：74138是译码器，输入是地址信号，输出多路中有一路是有效的，其他都是无效的；74151是多路选择器，输入除了地址信号以外还有需要传输的信号，选中的一路输出和输入相同，其他输出是高阻）。
 
-![](Understanding Reactor Pattern Thread-Based and Event-Driven/4.png)
+![](Understanding-Reactor-Pattern-Thread-Based-and-Event-Driven/4.png)
 
 反应器允许多个事件通过一个线程高效率的处理，除此之外，反应器还需要对事件的回调函数进行管理和组织，事件就绪时调用回调函数，反应器需要把请求转发给到空闲的handler并把它标记为正在处理请求。
 

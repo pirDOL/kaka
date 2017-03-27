@@ -66,7 +66,7 @@ $ cat /proc/sys/net/ipv4/ip_local_port_range
 
 然而RFC793中的例子假定同步打开的两个端点的IP:PORT是独立的，但是在我们的问题中，两个端点IP是不同的，所以和规范描述中的行为有所不同，下面具体分析一下，首先是维基百科中的[TCP状态转移图](https://en.wikipedia.org/wiki/Transmission_Control_Protocol)
 
-![](TCP client self connect/Tcp_state_diagram_fixed.svg)
+![](TCP-client-self-connect/Tcp_state_diagram_fixed.svg)
 
 telnet客户端启动时被分配的源端口是50000，TCP状态机被创建并且被初始化为CLOSED状态。然后，telnet客户端向目的端口50000的服务器建立连接，也就是发送SYN报文并转换为SYN SENT状态。因为服务器的端口和客户端端口相同，向目的端口发送的SYN报文实际上被源端口接收，因此telnet客户端因为接收到SYN报文进入SYN RECEIVED状态，同时向源端口50000回复SYN+ACK报文。下面我们结合内核中TCP/IP的代码分析一下状态机在这种情况下是如何转换为ESTABLISHED状态以及最后一次握手的ACK报文是如何发送的。
 

@@ -24,7 +24,7 @@ i := a[0]
 
 [4]int的内存表示就是4个整数顺序的平铺。
 
-![](Go Slices usage and internals/1.png)
+![](Go-Slices-usage-and-internals/1.png)
 
 go语言中的数组是值，数组类型的变量表示整个数组，而不是（像C语言那样）数组名是指向数组第一个元素的指针。这就意味着当传递数组或者对数组赋值时，会导致数组内容的拷贝。（为了避免不必要的拷贝，你可以传递一个指向数组的指针，但是指针毕竟不是数组。）一种理解数组的方式是把它看作是一种带有数字索引而不是字段名struct，并且长度固定。
 
@@ -95,10 +95,10 @@ s := x[:] // a slice referencing the storage of x
 
 ### slice的内部实现
 slice是一个数组片段的描述，它包含一个指向数组的指针、片段的长度以及容量（片段的最大长度）。
-![](Go Slices usage and internals/2.png)
+![](Go-Slices-usage-and-internals/2.png)
 
 前面通过make([]byte, 5)创建的的变量s，其结构如下：
-![](Go Slices usage and internals/3.png)
+![](Go-Slices-usage-and-internals/3.png)
 
 长度是slice引用的元素个数，容量是底层array的元素数量（从slice指针指向的第一个数组元素开始计算）。下面的例子清楚区分了二者。
 
@@ -106,7 +106,7 @@ slice是一个数组片段的描述，它包含一个指向数组的指针、片
 ```go
 s = s[2:4]
 ```
-![](Go Slices usage and internals/4.png)
+![](Go-Slices-usage-and-internals/4.png)
 
 slicing操作（在slice上创建slice）并没有拷贝slice的数据，而是创建了一个新的slice结构体指向原来的array。这使得slice操作和数组索引操作一样高效。因此修改slice的元素会修改原始slice的元素。
 ```go
@@ -122,7 +122,7 @@ e[1] = 'm'
 ```go
 s = s[:cap(s)]
 ```
-![](Go Slices usage and internals/5.png)
+![](Go-Slices-usage-and-internals/5.png)
 
 slice不能增长超过它的容量。如果非要这么做会导致运行时panic，就和array和slice索引越界一样。同样的，如果想访问slice底层数组前面的元素，不能通过重新slicing负值的方式实现。
 

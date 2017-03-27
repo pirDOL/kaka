@@ -5,7 +5,7 @@
 ### 1 Home
 
 #### 1.1 Zipkin是什么
-![](OpenZipkin A distributed tracing system/1.png)
+![](OpenZipkin-A-distributed-tracing-system/1.png)
 
 Zipkin是一个分布式追踪系统。用于收集时序信息，从而优化微服务架构的时延。Zipkin的理论基础是[谷歌Dapper论文](http://research.google.com/pubs/pub36356.html)，实现了追踪数据的采集和查询。
 
@@ -64,7 +64,7 @@ java -jar ./zipkin-server/target/zipkin-server-*exec.jar
 
 下图描述了数据通路：
 
-![](OpenZipkin A distributed tracing system/2.png)
+![](OpenZipkin-A-distributed-tracing-system/2.png)
 
 参考[Zipkin支持的追踪程序库列表](http://zipkin.io/pages/existing_instrumentations)，看看你使用的平台是否Zipkin已经支持了追踪程序库。
 
@@ -186,7 +186,7 @@ Zipkin最初使用Cassandra存储数据，因为Cassandra具有良好的可扩�
 
 首先我们从UI上看到追踪数据：
 
-![](OpenZipkin A distributed tracing system/3.png)
+![](OpenZipkin-A-distributed-tracing-system/3.png)
 
 等效的追踪数据的Zipkin数据模型：
 ```json
@@ -432,7 +432,7 @@ Annotation和BinaryAnnotation都会关联一个endpoint。有两个例外：这�
 
 >With two exceptions, this endpoint is associated with the traced process. For example, the service name drop-down in the Zipkin UI corresponds with Annotation.endpoint.serviceName or BinaryAnnotation.endpoint.serviceName. For the sake of usability, the cardinality of Endpoint.serviceName should be bounded. For example, it shouldn’t include variables or random numbers.
 
-![](OpenZipkin A distributed tracing system/4.png)
+![](OpenZipkin-A-distributed-tracing-system/4.png)
 
 #### Span
 某个特定的RPC对应的一系列Annotation和BinaryAnnotation的集合。span包含标识信息，例如traceid、spanid、parentspanid、rpc名字等。

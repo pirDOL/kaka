@@ -16,34 +16,34 @@ HEAD引用有一点特殊的地方是它指向另一个引用，它是一个指�
 
 总而言之，git的代码仓库是由DAG和便签组成的。DAG中的节点可以在代码库之间移动，也可以用压缩的方式更有效的存储，没用的节点可以通过垃圾回收释放。
 
-![](Git for Computer Scientists/1.png)
+![](Git-for-Computer-Scientists/1.png)
 
 ### 3 历史
 了解了git如何存储版本历史的知识后，接下来我们对merge等操作进行可视化，并讨论git与线性改变分支的版本管理工具的不同之处。
 
 首先，我们通过克隆远程代码库创建最简单的代码库，并对它进行了一次提交。
 
-![](Git for Computer Scientists/2.png)
+![](Git-for-Computer-Scientists/2.png)
 
 接着我们fetch了远程代码库的提交，但是并没有合并它到本地的分支。
 
-![](Git for Computer Scientists/3.png)
+![](Git-for-Computer-Scientists/3.png)
 
 git merge remotes/MYSERVER/master之后，因为merge是fast forward模式（本地分支并不进行新的提交），惟一发生的操作就是移动了便签，并修改工作目录中相应的文件。
 
-![](Git for Computer Scientists/4.png)
+![](Git-for-Computer-Scientists/4.png)
 
 本地和远程分别进行了一次提交（c和d），显然此时需要进行一次merge。
 
-![](Git for Computer Scientists/5.png)
+![](Git-for-Computer-Scientists/5.png)
 
 git merge remotes/MYSERVER/master，因为本地有一次提交d，此时合并不能使用fast forward模式，此时DAG中会新建一个commit节点e，注意e有两个父亲c和d。
 
-![](Git for Computer Scientists/6.png)
+![](Git-for-Computer-Scientists/6.png)
 
 经过一次本地提交、两次远程提交以及一次合并后的结果如图。See the "stitching" pattern emerge? The git DAG records exactly what the history of actions taken was.
 
-![](Git for Computer Scientists/7.png)
+![](Git-for-Computer-Scientists/7.png)
 
 stitching这个词读起来有些乏味。如果你还没有发布过你的分支，或者和其他人明确沟通过他们不会以你的某个提交为基础进行开发，此时你有个可以替代的做法，即rebase你的分支而不是merge，此时你的提交被另一个父亲不同提交代替，然后你的分支被移动到那里（You can rebase your branch, where instead of merging, your commit is replaced by another commit with a different parent, and your branch is moved there.）。
 你的旧的提交在垃圾回收之前都会保存在DAG中。暂时忽略它们，只要记住如果你全搞砸了也有办法（Ignore them for now, but just know there's a way out if you screwed up totally.）。如果有便签指向旧的提交，便签和旧的提交不会被删除，尽管这一行为显得有些让人相当困惑。
@@ -53,14 +53,14 @@ merge/rebase之前：下图1。
 merge：下图2，创建新的提交e，它的父亲是提交c和d。
 rebase：下图3，提交d被新的提交d2代替，rebase之前的主分支为d，父亲是b，rebase之后的主分支为d2，父亲变成了c。
 
-![](Git for Computer Scientists/8.png)
-![](Git for Computer Scientists/9.png)
-![](Git for Computer Scientists/10.png)
+![](Git-for-Computer-Scientists/8.png)
+![](Git-for-Computer-Scientists/9.png)
+![](Git-for-Computer-Scientists/10.png)
 
 在垃圾回收以后（忽略了不可达的提交）的情况如下图1，d2是rebase以后的主分支，然后在它上面又进行了一次提交h，此时主分支移动到h。
 rebase能够在一次操作中处理多个提交节点，如下图2中的h和d2。
 
-![](Git for Computer Scientists/11.png)
-![](Git for Computer Scientists/12.png)
+![](Git-for-Computer-Scientists/11.png)
+![](Git-for-Computer-Scientists/12.png)
 
 我们为对计算机科学不惧怕的读者准备的git简介就结束了，希望它能有所帮助。

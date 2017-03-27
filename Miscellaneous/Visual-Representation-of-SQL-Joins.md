@@ -21,7 +21,7 @@
 >but for simplicity, I will still refer to these as Joins because you use a SQL Join in each of these queries (but exclude some records with a WHERE clause).
 
 #### Inner JOIN
-![](Visual Representation of SQL Joins/INNER_JOIN.png)
+![](Visual-Representation-of-SQL-Joins/INNER_JOIN.png)
 
 这是最简单、最常见和熟知的JOIN。这个查询返回左侧表a中和右侧表b中有匹配的记录。SQL语句如下：
 ```SQL
@@ -32,7 +32,7 @@ ON A.Key = B.Key
 ```
 
 #### Left JOIN
-![](Visual Representation of SQL Joins/LEFT_JOIN.png)
+![](Visual-Representation-of-SQL-Joins/LEFT_JOIN.png)
 
 这个查询返回左侧表a中的所有记录，不论这条记录在右侧表b中是否有匹配的，当然表a和表b有匹配的记录也会返回。SQL语句如下：
 ```SQL
@@ -43,7 +43,7 @@ ON A.Key = B.Key
 ```
 
 #### Right JOIN
-![](Visual Representation of SQL Joins/RIGHT_JOIN.png)
+![](Visual-Representation-of-SQL-Joins/RIGHT_JOIN.png)
 
 这个查询返回右侧表b中的所有记录，不论这条记录在左侧表a中是否有匹配的，当然表a和表b有匹配的记录也会返回。SQL语句如下：
 ```SQL
@@ -54,7 +54,7 @@ ON A.Key = B.Key
 ```
 
 #### Outer JOIN
-![](Visual Representation of SQL Joins/FULL_OUTER_JOIN.png)
+![](Visual-Representation-of-SQL-Joins/FULL_OUTER_JOIN.png)
 
 这种JOIN操作通常被称为FULL OUTER JOIN或者FULL JOIN，查询返回两张表中的所有记录，当然表a和表b有匹配的记录也会返回，SQL语句如下：
 ```SQL
@@ -65,7 +65,7 @@ ON A.Key = B.Key
 ```
 
 #### Left Excluding JOIN
-![](Visual Representation of SQL Joins/LEFT_EXCLUDING_JOIN.png)
+![](Visual-Representation-of-SQL-Joins/LEFT_EXCLUDING_JOIN.png)
 
 这个查询返回左侧表a中的记录，这些记录在右侧表b中没有匹配的记录，SQL语句如下：
 ```SQL
@@ -77,7 +77,7 @@ WHERE B.Key IS NULL
 ```
 
 #### Right Excluding JOIN
-![](Visual Representation of SQL Joins/RIGHT_EXCLUDING_JOIN.png)
+![](Visual-Representation-of-SQL-Joins/RIGHT_EXCLUDING_JOIN.png)
 
 这个查询返回右侧表b中的记录，这些记录在左侧表a中没有匹配的记录，SQL语句如下：
 ```SQL
@@ -89,7 +89,7 @@ WHERE A.Key IS NULL
 ```
 
 #### Outer Excluding JOIN
-![](Visual Representation of SQL Joins/OUTER_EXCLUDING_JOIN.png)
+![](Visual-Representation-of-SQL-Joins/OUTER_EXCLUDING_JOIN.png)
 
 这个查询返回左侧表a和右侧表b中的记录，这些记录在另一侧的表中都没有匹配的记录，除了前面几种，这种JOIN我也有需要，并且经常使用。SQL语句如下：
 ```SQL
@@ -266,7 +266,7 @@ NULL NULL       SCOTCH       11
 
 注意在OUTER JOIN中，INNER JOIN的结果在前面，然后是RIGHT JOIN，最后是LEFT JOIN（至少Microsoft SQL Server是这么实现的，并且没有使用ORDER BY子句）。更多的信息可以参考[维基百科](http://en.wikipedia.org/wiki/Sql_join)（但是维基百科上的词条没有图片）。我还制作了一个速查表，如果你需要可以打出来，右键点击图片选择“另存为”可以下载完整大小的图片。
 
-![](Visual Representation of SQL Joins/Visual_SQL_JOINS_V2.png)
+![](Visual-Representation-of-SQL-Joins/Visual_SQL_JOINS_V2.png)
 
 ### 历史
 * 初次发布，02/03/2009

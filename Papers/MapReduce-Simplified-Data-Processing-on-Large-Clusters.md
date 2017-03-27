@@ -77,7 +77,7 @@ MapReduce接口有许多不同的可能实现。选择哪一种取决于环境�
 ### 3.1 实现概览
 输入数据被自动划分成M个分片组成的集合，从而map函数可以分布在多台机器上调用。输入的分片因此可以在不同的机器上并行的处理。通过对中间结果的key的hash值取模将它们划分成R个分片（R由用户指定），从而reduce函数也可以分布在多台机器上调用。
 
-![](MapReduce Simplified Data Processing on Large Clusters/1.png)
+![](MapReduce-Simplified-Data-Processing-on-Large-Clusters/1.png)
 
 图1展示了我们实现的MapReduce的操作流程。当用户的程序调用MapReduce函数时，下面的动作序列将会发生（下面动作序列的编号和图1中的编号对应）：
 
@@ -212,7 +212,7 @@ MapReduce程序库自动维护一些自己使用的计数器，例如输入K/V�
 ### 5.2 grep
 grep程序扫描10^10个100字节的记录中查找相对罕见的的三字节的模式串（这个字符串出现在92337条记录中）。输入数据被分割成大约64MB的分片（M=15000），整个输出数据放在一个文件中（R=1）。
 
-![](MapReduce Simplified Data Processing on Large Clusters/2.png)
+![](MapReduce-Simplified-Data-Processing-on-Large-Clusters/2.png)
 
 图2展示了计算过程随时间的变化。Y轴为输入数据扫描的速率，速率是逐渐上升随着更过的机器被分派到MapReduce计算，当1764个worker被分派了任务以后，处理速度达到30GB/s的峰值。随着map任务的结束，处理速率开始降低并在80秒时降低到0。整个计算过程花费了大约150秒从开始到结束，其中包括大约1分钟的启动开销，这个开销是由于程序传播到所有的worker的时间、打开1000个输入文件所需的与GFS的交互以及获取本地存储优化的所需信息。
 
@@ -225,7 +225,7 @@ grep程序扫描10^10个100字节的记录中查找相对罕见的的三字节�
 
 在这个基准测试中，我们的划分函数内建了关键字分布的知识，在常规的排序程序中，我们会增加一个预处理的MapReduce操作，它用于收集关键字的样本，根据这个样本中关键字的分布来计算最终排序结果中的关键字划分点。
 
-![](MapReduce Simplified Data Processing on Large Clusters/3.png)
+![](MapReduce-Simplified-Data-Processing-on-Large-Clusters/3.png)
 
 图3(a)展示了普通的排序程序的执行过程，左上角图展示了输入数据的读取速度，速度的峰值达到了13GB/s，在200秒后随着map任务的完成，读取速度迅速下降。注意输入速度比grep低，因为排序程序需要花费一半的时间和I/O带宽用于把中间结果写入到本地的磁盘中，然而grep的中间结果大小是可以忽略不计的（译者注：grep的中间结果是包含搜索模式串的行文本，中间结果的数量取决于模式串出现的次数，而排序的中间结果就是输入的所有数据）。
 
@@ -255,7 +255,7 @@ worker进程的死亡导致了输入速率为负值，因为之前完成的map�
 
 在每个任务结束时，MapReduce程序库会对任务使用的计算资源进行统计并写入日志，表1展示了2004年8月Google中一部分MapReduce任务一些统计结果。
 
-![](MapReduce Simplified Data Processing on Large Clusters/4.png)
+![](MapReduce-Simplified-Data-Processing-on-Large-Clusters/4.png)
 
 ### 6.1 大规模索引
 至今MapReduce一个最重要的应用就是使用它完全重写了我们的索引系统产品，索引系统用于处理网页搜索相关的数据结构，它以我们的爬虫系统获取的大规模的文档集合（存储在GFS上）作为输入，这些文档中原始数据的总量高达20TB。索引进程按顺序运行5到10个MapReduce操作，MapReduce相比之前非正式的分布式索引系统实现有如下便利：
