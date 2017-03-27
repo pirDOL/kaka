@@ -2,7 +2,7 @@
 
 This repo contains papers and blogs about CS, translated by myself, aiming to share with others as well as to practice my poor reading skills.
 
-p.s. Kaka is one of my friends, who used to be a translator in college.
+p.s. Kaka is one of my friends, who majored in translate during college.
 
 ### [The Go Blog](https://blog.golang.org/)
 
