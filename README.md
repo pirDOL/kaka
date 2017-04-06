@@ -12,15 +12,16 @@ p.s. Kaka is one of my friends, who majored in translate during college.
 * [Arrays, slices (and strings): The mechanics of 'append'](The-Go-Blog/Arrays,-slices-\(and-strings\)-The-mechanics-of-'append'.md)
 * [Go maps in action](The-Go-Blog/Go-maps-in-action.md)
 * [JSON and Go](The-Go-Blog/JSON-and-Go.md)
-* [Go Concurrency Patterns: Timing out, moving on](The-Go-Blog/Go-Concurrency-Patterns-Timing-out,-moving-on.md)
 * [The Laws of Reflection](The-Go-Blog/The-Laws-of-Reflection.md)
 * [Error handling and Go](The-Go-Blog/Error-handling-and-Go.md)
 * [Defer, Panic, and Recover](The-Go-Blog/Defer-Panic-and-Recover.md)
-* [Introducing the Go Race Detector](The-Go-Blog/Introducing-the-Go-Race-Detector.md)
+* [First Class Functions in Go](The-Go-Blog/First-Class-Functions-in-Go.md)
 * [Share Memory By Communicating](The-Go-Blog/Share-Memory-By-Communicating.md)
+* [Go Concurrency Patterns: Timing out, moving on](The-Go-Blog/Go-Concurrency-Patterns-Timing-out,-moving-on.md)
 * [Go Concurrency Patterns: Pipelines and cancellation](The-Go-Blog/Go-Concurrency-Patterns-Pipelines-and-cancellation.md)
 * [Go Concurrency Patterns: Context](The-Go-Blog/Go-Concurrency-Patterns-Context.md)
 * [Go Concurrency Patterns: Timing out, moving on](The-Go-Blog/Go-Concurrency-Patterns-Timing-out,-moving-on.md)
+* [Introducing the Go Race Detector](The-Go-Blog/Introducing-the-Go-Race-Detector.md)
 * [Death of goroutines under control](The-Go-Blog/Death-of-goroutines-under-control.md)
 
 ### Papers
