@@ -9,7 +9,8 @@ p.s. Kaka is one of my friends, who majored in translate during college.
 * [Command cgo](The-Go-Blog/Command-cgo.md)
 * [C? Go? Cgo!](The-Go-Blog/C-Go-Cgo.md)
 * [Go Slices usage and internals](The-Go-Blog/Go-Slices-usage-and-internals.md)
-* [Arrays, slices (and strings): The mechanics of 'append'](The-Go-Blog/Arrays,-slices-\(and-strings\)-The-mechanics-of-'append'.md)
+* [Arrays, slices (and strings): The mechanics of 'append'](The-Go-Blog/Arrays-slices-and-strings-The-mechanics-of-append.md)
+* [Strings, bytes, runes and characters in Go](The-Go-Blog/Strings-bytes-runes-and-characters-in-Go.md)
 * [Go maps in action](The-Go-Blog/Go-maps-in-action.md)
 * [JSON and Go](The-Go-Blog/JSON-and-Go.md)
 * [The Laws of Reflection](The-Go-Blog/The-Laws-of-Reflection.md)
@@ -17,10 +18,9 @@ p.s. Kaka is one of my friends, who majored in translate during college.
 * [Defer, Panic, and Recover](The-Go-Blog/Defer-Panic-and-Recover.md)
 * [First Class Functions in Go](The-Go-Blog/First-Class-Functions-in-Go.md)
 * [Share Memory By Communicating](The-Go-Blog/Share-Memory-By-Communicating.md)
-* [Go Concurrency Patterns: Timing out, moving on](The-Go-Blog/Go-Concurrency-Patterns-Timing-out,-moving-on.md)
+* [Go Concurrency Patterns: Timing out, moving on](The-Go-Blog/Go-Concurrency-Patterns-Timing-out-moving-on.md)
 * [Go Concurrency Patterns: Pipelines and cancellation](The-Go-Blog/Go-Concurrency-Patterns-Pipelines-and-cancellation.md)
 * [Go Concurrency Patterns: Context](The-Go-Blog/Go-Concurrency-Patterns-Context.md)
-* [Go Concurrency Patterns: Timing out, moving on](The-Go-Blog/Go-Concurrency-Patterns-Timing-out,-moving-on.md)
 * [Introducing the Go Race Detector](The-Go-Blog/Introducing-the-Go-Race-Detector.md)
 * [Death of goroutines under control](The-Go-Blog/Death-of-goroutines-under-control.md)
 
@@ -45,4 +45,5 @@ p.s. Kaka is one of my friends, who majored in translate during college.
 * [OpenZipkin A distributed tracing system](Miscellaneous/OpenZipkin-A-distributed-tracing-system.md)
 * [TCP client self connect](Miscellaneous/TCP-client-self-connect.md)
 * [Understanding HBase and BigTable](Miscellaneous/Understanding-HBase-and-BigTable.md)
+* [Understanding git for real by exploring the .git directory](Miscellaneous/Understanding-git-for-real-by-exploring-the-git-directory.md)
 
