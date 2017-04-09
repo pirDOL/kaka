@@ -22,6 +22,15 @@ p.s. Kaka is one of my friends, who majored in English during college.
 * [Go Concurrency Patterns: Pipelines and cancellation](The-Go-Blog/Go-Concurrency-Patterns-Pipelines-and-cancellation.md)
 * [Go Concurrency Patterns: Context](The-Go-Blog/Go-Concurrency-Patterns-Context.md)
 * [Introducing the Go Race Detector](The-Go-Blog/Introducing-the-Go-Race-Detector.md)
+* [Profiling Go Programs](The-Go-Blog/Profiling-Go-Programs.md)
+* [Organizing Go code](The-Go-Blog/Organizing-Go-code.md)
+* [Testable Examples in Go](The-Go-Blog/Testable-Examples-in-Go.md)
+* [Using Subtests and Sub-benchmarks](The-Go-Blog/Using-Subtests-and-Sub-benchmarks.md)
+* [The cover story](The-Go-Blog/The-cover-story.md)
+* [Godoc:documenting Go code](The-Go-Blog/Godoc-documenting-Go-code.md)
+* [Writing Web Applications](The-Go-Blog/Writing-Web-Applications.md)
+* [Effective Go](The-Go-Blog/Effective-Go.md)
+* [Debugging Go Code with GDB](The-Go-Blog/Debugging-Go-Code-with-GDB.md)
 * [Death of goroutines under control](The-Go-Blog/Death-of-goroutines-under-control.md)
 
 ### Papers

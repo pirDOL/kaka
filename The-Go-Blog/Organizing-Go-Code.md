@@ -1,0 +1,1 @@
+## [Organizing Go code](https://blog.golang.org/organizing-go-code)

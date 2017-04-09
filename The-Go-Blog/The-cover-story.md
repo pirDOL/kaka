@@ -1,0 +1,1 @@
+## [The cover story](https://blog.golang.org/cover)
