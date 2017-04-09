@@ -2,7 +2,7 @@
 
 This repo contains papers and blogs about CS, translated by myself, aiming to share with others as well as to practice my poor reading skills.
 
-p.s. Kaka is one of my friends, who majored in translate during college.
+p.s. Kaka is one of my friends, who majored in English during college.
 
 ### [The Go Blog](https://blog.golang.org/)
 
@@ -39,11 +39,11 @@ p.s. Kaka is one of my friends, who majored in translate during college.
 * [Top 10 dumb mistakes to avoid with C++11 smart pointers](Miscellaneous/Top-10-dumb-mistakes-to-avoid-with-C++11-smart-pointers.md)
 * [Understanding Reactor Pattern: Thread-Based and Event-Driven](Miscellaneous/Understanding-Reactor-Pattern-Thread-Based-and-Event-Driven.md)
 * [Process on Linux and Windows NT](Miscellaneous/Processes-on-Linux-and-Windows-NT.md)
-* [Visual Representation of SQL Joins](Miscellaneous/Visual-Representation-of-SQL-Joins.md)
-* [Automatically Locate When and Where Bugs Were Introduced with git bisect](Miscellaneous/Automatically-Locate-When-and-Where-Bugs-Were-Introduced-with-git-bisect.md)
-* [Git for Computer Scientists](Miscellaneous/Git-for-Computer-Scientists.md)
-* [OpenZipkin A distributed tracing system](Miscellaneous/OpenZipkin-A-distributed-tracing-system.md)
 * [TCP client self connect](Miscellaneous/TCP-client-self-connect.md)
+* [OpenZipkin A distributed tracing system](Miscellaneous/OpenZipkin-A-distributed-tracing-system.md)
 * [Understanding HBase and BigTable](Miscellaneous/Understanding-HBase-and-BigTable.md)
+* [Visual Representation of SQL Joins](Miscellaneous/Visual-Representation-of-SQL-Joins.md)
+* [Git for Computer Scientists](Miscellaneous/Git-for-Computer-Scientists.md)
 * [Understanding git for real by exploring the .git directory](Miscellaneous/Understanding-git-for-real-by-exploring-the-git-directory.md)
+* [Automatically Locate When and Where Bugs Were Introduced with git bisect](Miscellaneous/Automatically-Locate-When-and-Where-Bugs-Were-Introduced-with-git-bisect.md)
 
