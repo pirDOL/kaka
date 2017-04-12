@@ -1,1 +1,1 @@
-## [Godoc-documenting-Go-code.md](https://blog.golang.org/godoc-documenting-go-code)
+## [Godoc: documenting Go code.md](https://blog.golang.org/godoc-documenting-go-code)

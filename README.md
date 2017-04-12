@@ -27,7 +27,7 @@ p.s. Kaka is one of my friends, who majored in English during college.
 * [Testable Examples in Go](The-Go-Blog/Testable-Examples-in-Go.md)
 * [Using Subtests and Sub-benchmarks](The-Go-Blog/Using-Subtests-and-Sub-benchmarks.md)
 * [The cover story](The-Go-Blog/The-cover-story.md)
-* [Godoc:documenting Go code](The-Go-Blog/Godoc-documenting-Go-code.md)
+* [Godoc: documenting Go code](The-Go-Blog/Godoc-documenting-Go-code.md)
 * [Writing Web Applications](The-Go-Blog/Writing-Web-Applications.md)
 * [Effective Go](The-Go-Blog/Effective-Go.md)
 * [Debugging Go Code with GDB](The-Go-Blog/Debugging-Go-Code-with-GDB.md)
