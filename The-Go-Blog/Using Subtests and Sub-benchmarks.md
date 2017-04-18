@@ -133,21 +133,12 @@ func TestTime(t *testing.T) {
 
 子测试和子性能测试的完整的名字为：顶层测试的名字/子测试（子性能测试）的名字。顶层测试的名字就是`Test`或`Benchmark`开头的函数名，子测试（子性能测试）的名字是`Run`方法的第一个参数。为了避免显示和解析的问题，名字会做如下处理：空格用下划线替代，不能打印的字符会做转义。`-run/-bench`选项输入的正则表达式会由`go test`工具自动进行相同的处理。
 
-译者注：第二个正则表达式用双引号括起来，其中可以包含空格，然后go test自动将空格转换为下划线。
-```golang
-$ go test . -run=TestTime/"12:31 in"
---- FAIL: TestTime (0.00s)
-    --- FAIL: TestTime/12:31_in_America/New_York (0.00s)
-        main_test.go:28: got 07:34; want 7:31
-FAIL
-FAIL    subtest 0.555s
-```
-
 >To avoid display and parsing issues, a name is sanitized by replacing spaces with underscores and escaping non-printable characters. The same sanitizing is applied to the regular expressions passed to the -run or -bench flags.
 
 一些例子：
 ```
 # 执行欧洲时区的单测
+# 译者注：第二个正则表达式用双引号括起来，其中可以包含空格，然后go test会把空格转换为下划线
 $ go test -run=TestTime/"in Europe"
 --- FAIL: TestTime (0.00s)
     --- FAIL: TestTime/12:31_in_Europe/Zuri (0.00s)
@@ -211,10 +202,21 @@ func TestFoo(t *testing.T) {
 ```
 
 ### 并发控制
-子测试对并发提供了细粒度的控制。在理解如何使用并发控制之前，需要理解并发子测试的语意。
+子测试提供了细粒度的并发控制。在理解如何控制并发之前，需要理解并发测试的语意。
 
-每个子测试都关联到一个测试函数，如果测试函数调用了`testing.(*T).Parallel`方法，那么它就是并发子测试。并发测试和顺序测试不能同时执行，`-parallel`选项用于指定可以并发执行的最大并发测试数量。
+每个测试都关联到一个测试函数，如果测试函数调用了这个测试的`testing.T`实例的`Parallel`方法，那么它就是并发测试（译者注：没调用这个方法的都是顺序测试，`testing.T`可以看作一个测试的元信息，调用）。并发测试和顺序测试不会同时执行，`-parallel`选项用于指定可以并发执行的最大并发测试数量。
 
+当一个测试的所有子测试完成以后它的测试函数才返回，在测试函数返回之前，这个测试会阻塞其他的测试。这就意味着多个测试（每个测试有多个子测试，子测试都是并发的），那么这多个测试之间是顺序执行的。
+
+对于通过`Run`方法创建的子测试和顶层的测试，都遵循上面的规则。事实上，顶层测试的实现是一个隐藏测试的子测试。
+
+>Subtests allow fine-grained control over parallelism. To understand how to use subtests in the way it is important to understand the semantics of parallel tests.
+
+>Each test is associated with a test function. A test is called a parallel test if its test function calls the Parallel method on its instance of testing.T. A parallel test never runs concurrently with a sequential test and its execution is suspended until its calling test function, that of the parent test, has returned. The -parallel flag defines the maximum number of parallel tests that can run in parallel.
+
+>A test blocks until its test function returns and all of its subtests have completed. This means that the parallel tests that are run by a sequential test will complete before any other consecutive sequential test is run.
+
+>This behavior is identical for tests created by Run and top-level tests. In fact, under the hood top-level tests are implemented as subtests of a hidden master test.
 
 ### 并行执行一组测试
 上面的语意支持并行执行一组测试，**只能有一个顶层测试中的子测试并发执行，在一个顶层测试中所有通过`Run`方法创建的所有子测试完成之前，这个顶层测试都不会完成。其他的顶层测试此时都不能被执行。**注意，我们需要捕捉循环变量，保证Run方法的第二个参数中的闭包绑定到正确的变量。**
