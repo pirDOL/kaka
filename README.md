@@ -29,6 +29,7 @@ p.s. Kaka is one of my friends, who majored in English during college.
 * [The cover story](The-Go-Blog/The-cover-story.md)
 * [Godoc: documenting Go code](The-Go-Blog/Godoc-documenting-Go-code.md)
 * [Generating code](The-Go-Blog/Generating-code.md)
+* [Gccgo in GCC 4.7.1](The-Go-Blog/Gccgo-in-GCC-4.7.1.md)
 * [Writing Web Applications](The-Go-Blog/Writing-Web-Applications.md)
 * [Effective Go](The-Go-Blog/Effective-Go.md)
 * [Debugging Go Code with GDB](The-Go-Blog/Debugging-Go-Code-with-GDB.md)
