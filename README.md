@@ -8,6 +8,7 @@ p.s. Kaka is one of my friends, who majored in English during college.
 
 * [Command cgo](The-Go-Blog/Command-cgo.md)
 * [C? Go? Cgo!](The-Go-Blog/C-Go-Cgo.md)
+* [Gccgo in GCC 4.7.1](The-Go-Blog/Gccgo-in-GCC-4.7.1.md)
 * [Go Slices usage and internals](The-Go-Blog/Go-Slices-usage-and-internals.md)
 * [Arrays, slices (and strings): The mechanics of 'append'](The-Go-Blog/Arrays-slices-and-strings-The-mechanics-of-append.md)
 * [Strings, bytes, runes and characters in Go](The-Go-Blog/Strings-bytes-runes-and-characters-in-Go.md)
@@ -29,7 +30,8 @@ p.s. Kaka is one of my friends, who majored in English during college.
 * [The cover story](The-Go-Blog/The-cover-story.md)
 * [Godoc: documenting Go code](The-Go-Blog/Godoc-documenting-Go-code.md)
 * [Generating code](The-Go-Blog/Generating-code.md)
-* [Gccgo in GCC 4.7.1](The-Go-Blog/Gccgo-in-GCC-4.7.1.md)
+* [Introducing HTTP Tracing](The-Go-Blog/Introducing-HTTP-Tracing.md)
+* [JSON-RPC: a tale of interfaces](The-Go-Blog/JSON-RPC-a-tale-of-interfaces.md)
 * [Writing Web Applications](The-Go-Blog/Writing-Web-Applications.md)
 * [Effective Go](The-Go-Blog/Effective-Go.md)
 * [Debugging Go Code with GDB](The-Go-Blog/Debugging-Go-Code-with-GDB.md)

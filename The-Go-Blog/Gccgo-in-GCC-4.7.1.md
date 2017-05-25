@@ -1,6 +1,6 @@
 ## [Gccgo in GCC 4.7.1](https://blog.golang.org/gccgo-in-gcc-471)
 
-Ian Lance Taylor
+11 July 2012 Ian Lance Taylor
 
 [参考翻译](http://studygolang.com/articles/535)
 
@@ -18,7 +18,7 @@ gccgo提供了标准、完整的Go库。gccgo和gc在Go运行时很多的核心�
 
 gccgo发布包中还没有包含go命令，如果你使用的是标准Go发布版中的go命令，它已经支持通过`-compiler`选项选择gccgo编译器：`go build -compiler gccgo myprog`。Go和C/C++之间相互调用的工具：cgo和SWIG也支持gccgo。
 
-我们把已经将针对GCC的Go前端编译工具gofrontend采用和Go工具相同的BSD许可证发布。你可以从[这里](http://code.google.com/p/gofrontend)下载它的代码。注意当编译gccgo时，gofrontend前端的代码需要和GCC后端编译工具链接，因为GCC是GPL许可证，它的优先级比BSD许可证高。
+我们把已经将针对GCC的Go前端编译工具gofrontend和其他Go工具都用相同的BSD许可证发布。你可以从[这里](http://code.google.com/p/gofrontend)下载它的代码。注意当编译gccgo时，前端工具gofrontend的代码需要和后端编译工具GCC需要链接，因为GCC是GPL许可证，它的优先级比BSD许可证高。
 
 >Note that when the Go frontend is linked with the GCC backend to make gccgo, GCC GPL license takes precedence.
 
