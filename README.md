@@ -35,7 +35,9 @@ p.s. Kaka is one of my friends, who majored in English during college.
 * [Writing Web Applications](The-Go-Blog/Writing-Web-Applications.md)
 * [Effective Go](The-Go-Blog/Effective-Go.md)
 * [Debugging Go Code with GDB](The-Go-Blog/Debugging-Go-Code-with-GDB.md)
+* [A GIF decoder: an exercise in Go interfaces](The-Go-Blog/A-GIF-decoder-an-exercise-in-Go-interfaces.md)
 * [Death of goroutines under control](The-Go-Blog/Death-of-goroutines-under-control.md)
+* [A Short Survey of PProf Visualization Tools](The-Go-Blog/A-Short-Survey-of-PProf-Visualization-Tools.md)
 
 ### Papers
 

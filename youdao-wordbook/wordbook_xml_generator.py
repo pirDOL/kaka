@@ -119,15 +119,18 @@ class WordbookFileReader(object):
         """
         if self._wordbook_fd is None:
             return None
-        
-        line = self._wordbook_fd.readline()
-        if not line:
-            return None
+        while True:
+            line = self._wordbook_fd.readline()
+            if not line:
+                return None
 
-        splited_line = line.split('\t')
-        if len(splited_line) >= 2:
-            splited_line[1] = '[%s] %s' % (self._wordbook_filename, splited_line[1])
-        return WordItem(*splited_line)
+            if line[0] == '#' or line[0] == '\n':
+                continue
+
+            splited_line = line.split('\t')
+            if len(splited_line) >= 2:
+                splited_line[1] = '[%s] %s' % (self._wordbook_filename, splited_line[1])
+            return WordItem(*splited_line)
 
 
 class XMLGenerator(object):
