@@ -56,7 +56,7 @@ go tool pprof -web http://10.75.25.126:9091/debug/pprof/profile
 ```
 
 ### Go-Torch
-![](A-Short-Survey-of-PProf-Visualization-Tools/torch.svg)
+![](A-Short-Survey-of-PProf-Visualization-Tools/torch.png)
 
 Go-Torch是Uber开发的通过Brendan Gregg的脚本生成go程序火焰图的工具。和PProf一样，可视化火焰图对应用程序的采样周期是30秒。
 * 栈帧按照调用顺序垂直排列，调用深度越深，排列的高度越高。
