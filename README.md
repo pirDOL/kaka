@@ -59,6 +59,7 @@ p.s. Kaka is one of my friends, who majored in English during college.
 * [Understanding HBase and BigTable](Miscellaneous/Understanding-HBase-and-BigTable.md)
 * [Visual Representation of SQL Joins](Miscellaneous/Visual-Representation-of-SQL-Joins.md)
 * [Git for Computer Scientists](Miscellaneous/Git-for-Computer-Scientists.md)
-* [Understanding git for real by exploring the .git directory](Miscellaneous/Understanding-git-for-real-by-exploring-the-git-directory.md)
 * [Automatically Locate When and Where Bugs Were Introduced with git bisect](Miscellaneous/Automatically-Locate-When-and-Where-Bugs-Were-Introduced-with-git-bisect.md)
+* [Understanding git for real by exploring the .git directory](Miscellaneous/Understanding-git-for-real-by-exploring-the-git-directory.md)
+* [Git rebase and the golden rule explained.](Miscellaneous/Git-rebase-and-the-golden-rule-explained.md)
 
