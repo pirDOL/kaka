@@ -2,7 +2,7 @@
 
 This repo contains papers and blogs about CS, translated by myself, aiming to share with others as well as to practice my poor reading skills.
 
-p.s. Kaka is one of my friends, who majored in English during college.
+Kaka is one of my friends, who majored in English during college.
 
 ### [The Go Blog](https://blog.golang.org/)
 
@@ -23,11 +23,13 @@ p.s. Kaka is one of my friends, who majored in English during college.
 * [Go Concurrency Patterns: Pipelines and cancellation](The-Go-Blog/Go-Concurrency-Patterns-Pipelines-and-cancellation.md)
 * [Go Concurrency Patterns: Context](The-Go-Blog/Go-Concurrency-Patterns-Context.md)
 * [Introducing the Go Race Detector](The-Go-Blog/Introducing-the-Go-Race-Detector.md)
+* [Introducing Gofix](The-Go-Blog/Introducing-Gofix.md)
 * [Profiling Go Programs](The-Go-Blog/Profiling-Go-Programs.md)
 * [Organizing Go code](The-Go-Blog/Organizing-Go-code.md)
 * [Testable Examples in Go](The-Go-Blog/Testable-Examples-in-Go.md)
 * [Using Subtests and Sub-benchmarks](The-Go-Blog/Using-Subtests-and-Sub-benchmarks.md)
 * [The cover story](The-Go-Blog/The-cover-story.md)
+* [Package-names](The-Go-Blog/Package-names.md)
 * [Godoc: documenting Go code](The-Go-Blog/Godoc-documenting-Go-code.md)
 * [Generating code](The-Go-Blog/Generating-code.md)
 * [Introducing HTTP Tracing](The-Go-Blog/Introducing-HTTP-Tracing.md)
@@ -48,6 +50,14 @@ p.s. Kaka is one of my friends, who majored in English during college.
 * [Large-scale cluster management at Google with Borg](Papers/Large-scale-cluster-management-at-Google-with-Borg.md)
 * [Thrift: Scalable Cross-Language Services Implementation](Papers/Thrift-Scalable-Cross-Language-Services-Implementation.md)
 
+### Opensource
+* [OpenZipkin A distributed tracing system](Opensource/OpenZipkin-A-distributed-tracing-system.md)
+* [How fast is Redis?](Opensource/How-fast-is-Redis.md)
+* [Performance Best Practices for MongoDB](Opensource/MongoDB-Performance-Best-Practices.md)
+
+### Industry
+* [如何选择使用开源软件建立监控体系](Industry/如何选择使用开源软件建立监控体系.md)
+
 ### Miscellaneous
 
 * [6 Tips to supercharge C++11 vector performance](Miscellaneous/6-Tips-to-supercharge-C++11-vector-performance.md)
@@ -55,7 +65,6 @@ p.s. Kaka is one of my friends, who majored in English during college.
 * [Understanding Reactor Pattern: Thread-Based and Event-Driven](Miscellaneous/Understanding-Reactor-Pattern-Thread-Based-and-Event-Driven.md)
 * [Process on Linux and Windows NT](Miscellaneous/Processes-on-Linux-and-Windows-NT.md)
 * [TCP client self connect](Miscellaneous/TCP-client-self-connect.md)
-* [OpenZipkin A distributed tracing system](Miscellaneous/OpenZipkin-A-distributed-tracing-system.md)
 * [Understanding HBase and BigTable](Miscellaneous/Understanding-HBase-and-BigTable.md)
 * [Visual Representation of SQL Joins](Miscellaneous/Visual-Representation-of-SQL-Joins.md)
 * [Git for Computer Scientists](Miscellaneous/Git-for-Computer-Scientists.md)
