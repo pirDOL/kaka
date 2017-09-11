@@ -6,9 +6,10 @@ Kaka is one of my friends, who majored in English during college.
 
 ### [The Go Blog](https://blog.golang.org/)
 
-* [Command cgo](The-Go-Blog/Command-cgo.md)
-* [C? Go? Cgo!](The-Go-Blog/C-Go-Cgo.md)
-* [Gccgo in GCC 4.7.1](The-Go-Blog/Gccgo-in-GCC-4.7.1.md)
+### language brick
+* [Effective Go](The-Go-Blog/Effective-Go.md)
+* [Organizing Go code](The-Go-Blog/Organizing-Go-code.md)
+* [Package names](The-Go-Blog/Package-names.md)
 * [Go Slices usage and internals](The-Go-Blog/Go-Slices-usage-and-internals.md)
 * [Arrays, slices (and strings): The mechanics of 'append'](The-Go-Blog/Arrays-slices-and-strings-The-mechanics-of-append.md)
 * [Strings, bytes, runes and characters in Go](The-Go-Blog/Strings-bytes-runes-and-characters-in-Go.md)
@@ -17,29 +18,39 @@ Kaka is one of my friends, who majored in English during college.
 * [The Laws of Reflection](The-Go-Blog/The-Laws-of-Reflection.md)
 * [Error handling and Go](The-Go-Blog/Error-handling-and-Go.md)
 * [Defer, Panic, and Recover](The-Go-Blog/Defer-Panic-and-Recover.md)
-* [First Class Functions in Go](The-Go-Blog/First-Class-Functions-in-Go.md)
+
+#### go test
+* [Testable Examples in Go](The-Go-Blog/Testable-Examples-in-Go.md)
+* [Using Subtests and Sub-benchmarks](The-Go-Blog/Using-Subtests-and-Sub-benchmarks.md)
+* [The cover story](The-Go-Blog/The-cover-story.md)
+
+#### concurrency
 * [Share Memory By Communicating](The-Go-Blog/Share-Memory-By-Communicating.md)
 * [Go Concurrency Patterns: Timing out, moving on](The-Go-Blog/Go-Concurrency-Patterns-Timing-out-moving-on.md)
 * [Go Concurrency Patterns: Pipelines and cancellation](The-Go-Blog/Go-Concurrency-Patterns-Pipelines-and-cancellation.md)
 * [Go Concurrency Patterns: Context](The-Go-Blog/Go-Concurrency-Patterns-Context.md)
 * [Introducing the Go Race Detector](The-Go-Blog/Introducing-the-Go-Race-Detector.md)
-* [Introducing Gofix](The-Go-Blog/Introducing-Gofix.md)
+* [Death of goroutines under control](The-Go-Blog/Death-of-goroutines-under-control.md)
+
+#### cgo
+* [Command cgo](The-Go-Blog/Command-cgo.md)
+* [C? Go? Cgo!](The-Go-Blog/C-Go-Cgo.md)
+* [Gccgo in GCC 4.7.1](The-Go-Blog/Gccgo-in-GCC-4.7.1.md)
+
+#### go tool
 * [Profiling Go Programs](The-Go-Blog/Profiling-Go-Programs.md)
-* [Organizing Go code](The-Go-Blog/Organizing-Go-code.md)
-* [Testable Examples in Go](The-Go-Blog/Testable-Examples-in-Go.md)
-* [Using Subtests and Sub-benchmarks](The-Go-Blog/Using-Subtests-and-Sub-benchmarks.md)
-* [The cover story](The-Go-Blog/The-cover-story.md)
-* [Package-names](The-Go-Blog/Package-names.md)
+* [Debugging Go Code with GDB](The-Go-Blog/Debugging-Go-Code-with-GDB.md)
+* [A Short Survey of PProf Visualization Tools](The-Go-Blog/A-Short-Survey-of-PProf-Visualization-Tools.md)
+* [Introducing Gofix](The-Go-Blog/Introducing-Gofix.md)
 * [Godoc: documenting Go code](The-Go-Blog/Godoc-documenting-Go-code.md)
 * [Generating code](The-Go-Blog/Generating-code.md)
 * [Introducing HTTP Tracing](The-Go-Blog/Introducing-HTTP-Tracing.md)
-* [JSON-RPC: a tale of interfaces](The-Go-Blog/JSON-RPC-a-tale-of-interfaces.md)
-* [Writing Web Applications](The-Go-Blog/Writing-Web-Applications.md)
-* [Effective Go](The-Go-Blog/Effective-Go.md)
-* [Debugging Go Code with GDB](The-Go-Blog/Debugging-Go-Code-with-GDB.md)
+
+#### official examples
+* [First Class Functions in Go](The-Go-Blog/First-Class-Functions-in-Go.md)
 * [A GIF decoder: an exercise in Go interfaces](The-Go-Blog/A-GIF-decoder-an-exercise-in-Go-interfaces.md)
-* [Death of goroutines under control](The-Go-Blog/Death-of-goroutines-under-control.md)
-* [A Short Survey of PProf Visualization Tools](The-Go-Blog/A-Short-Survey-of-PProf-Visualization-Tools.md)
+* [JSON-RPC: a tale of interfaces](The-Go-Blog/JSON-RPC-a-tale-of-interfaces.md)
+* [Writing Web Applications](The-Go-Blog/Writing-Web-Applications.md) 
 
 ### Papers
 
