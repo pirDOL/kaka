@@ -45,6 +45,7 @@ Kaka is one of my friends, who majored in English during college.
 * [Godoc: documenting Go code](The-Go-Blog/Godoc-documenting-Go-code.md)
 * [Generating code](The-Go-Blog/Generating-code.md)
 * [Introducing HTTP Tracing](The-Go-Blog/Introducing-HTTP-Tracing.md)
+* [go fmt your code](The-Go-Blog/go-fmt-your-code.md)
 
 #### official examples
 * [First Class Functions in Go](The-Go-Blog/First-Class-Functions-in-Go.md)
