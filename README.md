@@ -5,7 +5,6 @@ This repo contains papers and blogs about CS, translated by myself, aiming to sh
 Kaka is one of my friends, who majored in English during college.
 
 ### [The Go Blog](https://blog.golang.org/)
-
 ### language brick
 * [Effective Go](The-Go-Blog/Effective-Go.md)
 * [Organizing Go code](The-Go-Blog/Organizing-Go-code.md)
@@ -52,9 +51,10 @@ Kaka is one of my friends, who majored in English during college.
 * [A GIF decoder: an exercise in Go interfaces](The-Go-Blog/A-GIF-decoder-an-exercise-in-Go-interfaces.md)
 * [JSON-RPC: a tale of interfaces](The-Go-Blog/JSON-RPC-a-tale-of-interfaces.md)
 * [Writing Web Applications](The-Go-Blog/Writing-Web-Applications.md) 
+* [The first Go program](The-Go-Blog/The-first-Go-program.md)
+* [Inside the Go playground](The-Go-Blog/Inside-the-Go-playground.md)
 
 ### Papers
-
 * [MapReduce: Simplified Data Processing on Large Clusters](Papers/MapReduce-Simplified-Data-Processing-on-Large-Clusters.md)
 * [The Google File System](Papers/The-Google-File-System.md)
 * [Bigtable: A Distributed Storage System for Structured Data](Papers/Bigtable-A-Distributed-Storage-System-for-Structured-Data.md)
@@ -71,7 +71,6 @@ Kaka is one of my friends, who majored in English during college.
 * [如何选择使用开源软件建立监控体系](Industry/如何选择使用开源软件建立监控体系.md)
 
 ### Miscellaneous
-
 * [6 Tips to supercharge C++11 vector performance](Miscellaneous/6-Tips-to-supercharge-C++11-vector-performance.md)
 * [Top 10 dumb mistakes to avoid with C++11 smart pointers](Miscellaneous/Top-10-dumb-mistakes-to-avoid-with-C++11-smart-pointers.md)
 * [Understanding Reactor Pattern: Thread-Based and Event-Driven](Miscellaneous/Understanding-Reactor-Pattern-Thread-Based-and-Event-Driven.md)
