@@ -16,6 +16,7 @@ Kaka is one of my friends, who majored in English during college.
 * [JSON and Go](The-Go-Blog/JSON-and-Go.md)
 * [The Laws of Reflection](The-Go-Blog/The-Laws-of-Reflection.md)
 * [Error handling and Go](The-Go-Blog/Error-handling-and-Go.md)
+* [Errors are values](The-Go-Blog/Errors-are-values.md)
 * [Defer, Panic, and Recover](The-Go-Blog/Defer-Panic-and-Recover.md)
 
 #### go test
