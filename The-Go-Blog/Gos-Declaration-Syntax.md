@@ -5,7 +5,7 @@
 ### TLDR
 1. `int *p`：`*p`的类型是int，所以`p`的类型是指向int的指针。
 >Instead of describing the types with special syntax, one writes an expression involving the item being declared, and states what type that expression will have.
-2. we believe Go's type syntax is easier to understand than C's, especially when things get complicated.
+2. Go's declarations read left to right, we believe Go's type syntax is easier to understand than C's, especially when things get complicated.
 ```
 int (*(*fp1)(int (*fp2)(int, int), int))(int, int)
 int (*(*fp)(int (*)(int, int), int))(int, int)
@@ -13,13 +13,13 @@ int (*(*fp)(int (*)(int, int), int))(int, int)
 f1 func(f1 func(int, int) int, b int) func(int, int) int
 f func(func(int, int) int, int) func(int, int) int
 ```
-3. Go's declarations read left to right.
 
 ### 简介
 很多新手对于Go的声明语法不同于C系列的语言已有的传统感到奇怪，本文会比较Go 和C系列语言的两种声明语法，并解释为什么Go的声明语法长成现在的样子。
 
 ### C语法
-首先来说是C语言语法，C没有采用特殊语法描述变量的类型，而是采用了一种不寻常但非常聪明的声明语法：声明语法由表达式和类型组成，表达式只要包含要声明的标识符即可（译者注：x、*p、a[3]），然后类型描述的是表达式的类型。例如：`int x;`声明了x为int类型，表达式是`x`，它的类型是int（所以，x就是int类型）。In general, to figure out how to write the type of a new variable, write an expression involving that variable that evaluates to a basic type, then put the basic type on the left and the expression on the right.
+首先来说是C语言语法，C没有采用特殊语法描述变量的类型，而是采用了一种不寻常但非常聪明的声明语法：声明语法由表达式和类型组成，表达式只要包含要声明的标识符即可（译者注：x、*p、a[3]），然后类型描述的是表达式的类型。例如：`int x;`声明了x为int类型，表达式是`x`，它的类型是int（所以，x就是int类型）。通常情况下声明一个变量的方法是：写一个包含这个变量的表达式，在表达式左侧写上这个表达式计算结果的类型（译者注：`int a[3];`，声明的变量是a，表达式是`a[3]`，它的返回值类型为int，所以a是一个元素为int的数组）。
+>In general, to figure out how to write the type of a new variable, write an expression involving that variable that evaluates to a basic type, then put the basic type on the left and the expression on the right.
 
 另外，下面这两个声明表示p是一个指向int类型的指针，因为`*p`这个表达式的类型是int，a是一个元素类型为int的数组，因为`a[3]`的类型是int。忽略特定的下标值（译者注：因为a[3]越界了），这里下标值还用来表示数组元素的个数。
 ```c
@@ -39,7 +39,8 @@ int main(argc, argv)
 
 C的声明语法是很棒的语法思想，对于简单类型能很好的工作，但是（随着类型的复杂）很快就变得混乱，典型的例子是申明一个函数指针，按照语法规范，是这样写的：`int (*fp)(int a, int b);`，这里fp是一个指向函数的指针，因为如果你写这个表达式`(*fp)(a,b)`，你会调用一个函数，它的返回值为int。
 
-如果fp的某个参数也是个函数指针呢？`int (*fp)(int (*ff)(int x, int y), int b)`，这个表达式开始难以理解了。（为了能够理解这个表达式，我们先看一个语法特性），在声明函数时，可以把参数的名字省略掉，所以main函数可以这样声明：`int main(int, char *[])`，argv前面是这样声明的：`char *argv[]`。so you drop the name from the middle of its declaration to construct its type. It's not obvious, though, that you declare something of type char *[] by putting its name in the middle.
+如果fp的某个参数也是个函数指针呢？`int (*fp)(int (*ff)(int x, int y), int b)`，这个表达式开始难以理解了。（为了能够理解这个表达式，我们先看一个语法特性），在声明函数时，可以把参数的名字省略掉，所以main函数可以这样声明：`int main(int, char *[])`，argv前面是这样声明的：`char *argv[]`，把声明语句`*`和`[]`中间的变量名去掉，剩下的就是argv这个变量的类型`char *[]`，对于这个类型把变量名放在中间看起来很奇怪（译者注：简单类型是`int x;`，变量名在最后，但是复杂类型`char *argv[]`，变量名在中间）。
+>so you drop the name from the middle of its declaration to construct its type. It's not obvious, though, that you declare something of type char *[] by putting its name in the middle.
 
 那就让我们看下如果把参数的名字都省略掉以后fp的声明：`int (*fp)(int (*)(int, int), int)`，参数名的位置很难明显的看出来，甚至都没法准确、清晰的看出来这是个函数指针声明了。
 
@@ -99,6 +100,3 @@ x = p^
 
 ### 注意
 Go的声明是从左到右阅读的，这里已经指出C语言（的声明语法）需要螺旋式阅读（译者注：例如`int (*(*fp)(int (*)(int, int), int))(int, int)`），请看David Anderson写的文章[The "Clockwise/Spiral Rule"](http://c-faq.com/decl/spiral.anderson.html)。
-
-### 参考
-[Go声明语法](https://yushuangqi.com/blog/2016/gos-declaration-syntax.html)
