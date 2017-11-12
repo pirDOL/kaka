@@ -19,6 +19,7 @@ Kaka is one of my friends, who majored in English during college.
 * [Errors are values](The-Go-Blog/Errors-are-values.md)
 * [Defer, Panic, and Recover](The-Go-Blog/Defer-Panic-and-Recover.md)
 * [Go's Declaration Syntax](The-Go-Blog/Gos-Declaration-Syntax.md)
+* [Constants](The-Go-Blog/Constants.md)
 
 #### go test
 * [Testable Examples in Go](The-Go-Blog/Testable-Examples-in-Go.md)
