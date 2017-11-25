@@ -20,6 +20,7 @@ Kaka is one of my friends, who majored in English during college.
 * [Defer, Panic, and Recover](The-Go-Blog/Defer-Panic-and-Recover.md)
 * [Go's Declaration Syntax](The-Go-Blog/Gos-Declaration-Syntax.md)
 * [Constants](The-Go-Blog/Constants.md)
+* [Gobs of data](The-Go-Blog/Gobs-of-data.md)
 
 #### go test
 * [Testable Examples in Go](The-Go-Blog/Testable-Examples-in-Go.md)
@@ -49,7 +50,7 @@ Kaka is one of my friends, who majored in English during college.
 * [Introducing HTTP Tracing](The-Go-Blog/Introducing-HTTP-Tracing.md)
 * [go fmt your code](The-Go-Blog/go-fmt-your-code.md)
 
-#### official examples
+#### examples
 * [First Class Functions in Go](The-Go-Blog/First-Class-Functions-in-Go.md)
 * [A GIF decoder: an exercise in Go interfaces](The-Go-Blog/A-GIF-decoder-an-exercise-in-Go-interfaces.md)
 * [JSON-RPC: a tale of interfaces](The-Go-Blog/JSON-RPC-a-tale-of-interfaces.md)
