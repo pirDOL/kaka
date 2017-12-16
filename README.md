@@ -34,6 +34,7 @@ Kaka is one of my friends, who majored in English during college.
 * [Go Concurrency Patterns: Context](The-Go-Blog/Go-Concurrency-Patterns-Context.md)
 * [Introducing the Go Race Detector](The-Go-Blog/Introducing-the-Go-Race-Detector.md)
 * [Death of goroutines under control](The-Go-Blog/Death-of-goroutines-under-control.md)
+* [Job Queues in Go](The-Go-Blog/Job-Queues-in-Go.md)
 
 #### cgo
 * [Command cgo](The-Go-Blog/Command-cgo.md)
@@ -75,6 +76,7 @@ Kaka is one of my friends, who majored in English during college.
 ### Industry
 * [如何选择使用开源软件建立监控体系](Industry/如何选择使用开源软件建立监控体系.md)
 * [从0到1构建美团压测工具](Industry/从0到1构建美团压测工具.md)
+* [何登成13年开发缩影与阿里数据库内核锤炼之路.md](Industry/何登成13年开发缩影与阿里数据库内核锤炼之路.md)
 
 ### Miscellaneous
 * [6 Tips to supercharge C++11 vector performance](Miscellaneous/6-Tips-to-supercharge-C++11-vector-performance.md)
@@ -88,4 +90,5 @@ Kaka is one of my friends, who majored in English during college.
 * [Automatically Locate When and Where Bugs Were Introduced with git bisect](Miscellaneous/Automatically-Locate-When-and-Where-Bugs-Were-Introduced-with-git-bisect.md)
 * [Understanding git for real by exploring the .git directory](Miscellaneous/Understanding-git-for-real-by-exploring-the-git-directory.md)
 * [Git rebase and the golden rule explained.](Miscellaneous/Git-rebase-and-the-golden-rule-explained.md)
+* [SaaS, PaaS and IaaS explained in one graphic](Miscellaneous/SaaS,-PaaS-and-IaaS-explained-in-one-graphic.md)
 
