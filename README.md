@@ -58,6 +58,7 @@ Kaka is one of my friends, who majored in English during college.
 * [Writing Web Applications](The-Go-Blog/Writing-Web-Applications.md) 
 * [The first Go program](The-Go-Blog/The-first-Go-program.md)
 * [Inside the Go playground](The-Go-Blog/Inside-the-Go-playground.md)
+* [Running MongoDB Queries Concurrently With Go](The-Go-Blog/Running-MongoDB-Queries-Concurrently-With-Go.md)
 
 ### Papers
 * [MapReduce: Simplified Data Processing on Large Clusters](Papers/MapReduce-Simplified-Data-Processing-on-Large-Clusters.md)
@@ -71,7 +72,6 @@ Kaka is one of my friends, who majored in English during college.
 * [OpenZipkin A distributed tracing system](Opensource/OpenZipkin-A-distributed-tracing-system.md)
 * [How fast is Redis?](Opensource/How-fast-is-Redis.md)
 * [Performance Best Practices for MongoDB](Opensource/MongoDB-Performance-Best-Practices.md)
-* [Running MongoDB Queries Concurrently With Go](Opensource/Running-MongoDB-Queries-Concurrently-With-Go.md)
 
 ### Industry
 * [如何选择使用开源软件建立监控体系](Industry/如何选择使用开源软件建立监控体系.md)
