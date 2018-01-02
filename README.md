@@ -59,6 +59,7 @@ Kaka is one of my friends, who majored in English during college.
 * [The first Go program](The-Go-Blog/The-first-Go-program.md)
 * [Inside the Go playground](The-Go-Blog/Inside-the-Go-playground.md)
 * [Running MongoDB Queries Concurrently With Go](The-Go-Blog/Running-MongoDB-Queries-Concurrently-With-Go.md)
+* [Error handling in Upspin](The-Go-Blog/Error-handling-in-Upspin.md)
 
 ### Papers
 * [MapReduce: Simplified Data Processing on Large Clusters](Papers/MapReduce-Simplified-Data-Processing-on-Large-Clusters.md)
