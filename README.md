@@ -73,11 +73,8 @@ Kaka is one of my friends, who majored in English during college.
 * [OpenZipkin A distributed tracing system](Opensource/OpenZipkin-A-distributed-tracing-system.md)
 * [How fast is Redis?](Opensource/How-fast-is-Redis.md)
 * [Performance Best Practices for MongoDB](Opensource/MongoDB-Performance-Best-Practices.md)
-
-### Industry
-* [如何选择使用开源软件建立监控体系](Industry/如何选择使用开源软件建立监控体系.md)
-* [从0到1构建美团压测工具](Industry/从0到1构建美团压测工具.md)
-* [何登成13年开发缩影与阿里数据库内核锤炼之路.md](Industry/何登成13年开发缩影与阿里数据库内核锤炼之路.md)
+* [Docker vs. Kubernetes vs. Apache Mesos: Why What You Think You Know is Probably Wrong](Opensource/Docker-vs.-Kubernetes-vs.-Apache-Mesos-Why-What-You-Think-You-Know-is-Probably-Wrong.md)
+* [What's a Service Mesh? And Why Do I Need One?](Opensource/What's-a-Service-Mesh-And-Why-Do-I-Need-One.md)
 
 ### Miscellaneous
 * [6 Tips to supercharge C++11 vector performance](Miscellaneous/6-Tips-to-supercharge-C++11-vector-performance.md)
@@ -92,6 +89,9 @@ Kaka is one of my friends, who majored in English during college.
 * [Understanding git for real by exploring the .git directory](Miscellaneous/Understanding-git-for-real-by-exploring-the-git-directory.md)
 * [Git rebase and the golden rule explained.](Miscellaneous/Git-rebase-and-the-golden-rule-explained.md)
 * [SaaS, PaaS and IaaS explained in one graphic](Miscellaneous/SaaS,-PaaS-and-IaaS-explained-in-one-graphic.md)
-* [Docker vs. Kubernetes vs. Apache Mesos: Why What You Think You Know is Probably Wrong](Miscellaneous/Docker-vs.-Kubernetes-vs.-Apache-Mesos-Why-What-You-Think-You-Know-is-Probably-Wrong.md)
-* [What's a Service Mesh? And Why Do I Need One?](Miscellaneous/What's-a-Service-Mesh-And-Why-Do-I-Need-One.md)
+
+### Industry
+* [如何选择使用开源软件建立监控体系](Industry/如何选择使用开源软件建立监控体系.md)
+* [从0到1构建美团压测工具](Industry/从0到1构建美团压测工具.md)
+* [何登成13年开发缩影与阿里数据库内核锤炼之路.md](Industry/何登成13年开发缩影与阿里数据库内核锤炼之路.md)
 

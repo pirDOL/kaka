@@ -35,7 +35,7 @@
 * 将应用程序和库打包在单个包中（Docker镜像），因此应用程序可以跨多环境一致部署
 * 提供类似于git的语义，例如“docker push”，“docker commit”，这样可以让应用程序开发者快速使用新技术，并将其融入到现有的工作流中
 * 将Docker镜像定义为不可变层，提供不可变的基础设施。提交的更改被存储为一个单独的只读层，这让镜像复用和跟踪更改变得更加容易。通过传输镜像更新的部分而不是整个镜像节省看磁盘空间和网络流量（原文：Layers also save disk space and network traffic by only transporting the updates instead of entire images）
-* 通过使用可以临时存储运行时更改的可写层来实例化不可变映像，从而方便快速部署和扩展应用程序的多个实例
+* 通过实例化不可变镜像来运行docker容器，同时使用可以临时存储运行时状态的可写层来，从而方便快速部署和扩展应用程序的多个实例
 
 随着Docker的风靡，开发人员开始把容器从笔记本电脑转移到生产环境中运行。这就需要借助工具来协调这些容器，我们称为容器编排。有趣的是，Apache Mesos的[Marathon](https://mesosphere.github.io/marathon/)成为当时（2014年6月）第一个支持Docker镜像的容器编排工具（我们将在下面详细描述它）。就连Docker创始人、首席技术官Solomon Hykes也推荐Mesos为“[生产集群的黄金标准](https://www.google.com/url?q=https://www.youtube.com/watch?v=sGWQ8WiGN8Y&feature=youtu.be&t=35m10s&sa=D&ust=1500923856666000&usg=AFQjCNFLtW96ZWnOUGFPX_XUuVOPdWrd_w)”。不久之后，除了Marathon之外，许多容器编排技术出现了，这其中包括：[Nomad](https://www.nomadproject.io/)、[Kubernetes](http://kubernetes.io/)以及毫不意外的Docker Swarm（[现在是Docker引擎的一部分](https://blog.docker.com/2016/06/docker-1-12-built-in-orchestration/)）。
 
@@ -64,7 +64,7 @@ Docker让开发者可以把应用及其依赖打包到一个包里面使其成�
 
 Kubernetes对应用程序开发人员非常有吸引力，因为它减少了对基础设施和运维团队的依赖。供应商也非常喜欢Kubernetes，因为它提供了一种简单的方式来让他们拥抱容器迁移，自己部署的Kubernetes是运维上的一项挑战，Kubernetes为此提供一个商业化解决方案（原文：provide a commercial solution to the operational challenges of running your own Kubernetes deployment (which remains a non-trivial exercise). ）。除此之外，Kubernetes的吸引力还源自于它是CNCF下的开源项目，与Docker Swarm相比，后者虽然是开源的，但却受到Docker Inc.的严格控制。
 
-Kubernetes的核心优势是为应用程序开发人员提供强大的工具来编排无状态的Docker容器。虽然有多个计划将Kubernetes的范围扩展到更多的工作场景（如数据分析和有状态的数据服务），但这些计划仍然处于非常早期的阶段，还有待观察。
+Kubernetes的核心优势是为应用程序开发人员提供强大的工具来编排无状态的Docker容器。虽然有多个创新项目将Kubernetes的范围扩展到更多的工作场景（如数据分析和有状态的数据服务），但这些计划仍然处于非常早期的阶段，还有待观察。
 
 #### Apache Mesos
 Apache Mesos最初是UC Berkeley为创建下一代集群管理器而诞生的项目，并从如[谷歌的Borg](https://research.google.com/pubs/pub43438.html)和[Facebook的Tupperware](https://www.youtube.com/watch?v=C_WuUgTqgOc)中吸取经验教训。但是Borg和Tupperware是单体架构，并且是和物理基础设施绑定的不开源专有技术。Mesos引入了模块化架构，采用开源的方法，且设计完全独立于底层基础架构。Mesos很快被[Twitter](https://youtu.be/F1-UEIG7u5g)、[Apple(Siri)](http://www.businessinsider.com/apple-siri-uses-apache-mesos-2015-8)、[Yelp](https://engineeringblog.yelp.com/2015/11/introducing-paasta-an-open-platform-as-a-service.html)、[Uber](http://highscalability.com/blog/2016/9/28/how-uber-manages-a-million-writes-per-second-using-mesos-and.html)、[Netflix](https://medium.com/netflix-techblog/distributed-resource-scheduling-with-apache-mesos-32bd9eb4ca38)以及许多领先的科技公司所采用，以支持他们在微服务、大数据和实时分析到弹性伸缩的一切实践。
@@ -73,15 +73,15 @@ Apache Mesos最初是UC Berkeley为创建下一代集群管理器而诞生的项
 
 * 将数据中心资源整合成一个单一池，以简化资源配置，同时在私有或公共云之间提供一致的应用程序和操作体验
 * 在相同的基础设施上实现不同的工作负载服务部署，比如分析、无状态微服务、分布式数据服务和传统应用程序，以提高利用率，降低成本和空间
-* 应用程序指定任务的，如部署、自修复、扩容和升级通过自动化的day-two 操作实现，提供高可用的容错基础设施
-* 在不修改集群管理器或现有应用程序的情况下，提供可扩展性来运行新的应用程序和技术
-* 将应用程序和底层基础设施弹性从几个节点扩展到数万个节点。
+* 应用程序定制运维操作的自动化（automate day-two operations），如部署、自修复、扩容和升级通过自动化的day-two 操作实现，提供高可用的容错基础设施
+* 提供可持续的扩展性，在不修改集群管理器或现有应用程序的情况下，提供可扩展性来运行新的应用程序和技术
+* 将应用程序和底层基础设施弹性从几个节点扩展到数万个节点
 
 Mesos的独特之处还在于可以单独管理各种不同的工作负载：包括传统的应用程序，如Java、无状态Docker微服务、批处理任务、实时分析和有状态的分布式数据服务。Mesos广泛的工作负载覆盖来自于它的[两级架构，这个架构实现了“应用感知”的调度](https://mesosphere.com/blog/application-aware-scheduling-mesos/)。应用感知调度是通过将应用程序特定操作逻辑封装到“Mesos框架”（类似于运行中的runbook）来完成的。Mesos Master是资源管理器，它向应用程序特定的Mesos框架提供底层基础设施，同时保持资源隔离。这种方法使得每个工作负载有自己专用的应用程序调度器，它了解其对部署、缩放和升级的具体操作需求。应用程序调度程序也独立地被开发、管理和更新，这让Mesos保持高度可扩展性，支持新的工作负载，或者随着时间的推移增加更多的操作能力。
 
 ![](Docker-vs.-Kubernetes-vs.-Apache-Mesos-Why-What-You-Think-You-Know-is-Probably-Wrong/mesos-two-level-scheduler.png)
 
-以一个团队如何管理升级为例。无状态应用程序可以从“蓝/绿”部署方法中获益：当旧的应用程序还在使用的时候，另一个完整版本的应用程序正在启动，当新的应用准备好以后把流量切换到新的应用程序，再销毁旧的应用程序。但是，升级像HDFS或Cassandra这样的数据工作负载需要把存储节点设置为离线状态，把本地数据持久化以避免数据丢失，执行特定操作序列进行升级，并在升级之前和之后根据每个节点类型执行特殊检查和命令。这些步骤中的所有环节针对特定的应用程序或服务，甚至是特定版本进行的。这使得用常规容器编排调度器管理数据服务变得非常困难。
+以一个团队如何管理升级为例：无状态应用程序可以从“[蓝/绿](https://martinfowler.com/bliki/BlueGreenDeployment.html)”部署方法中获益：当旧的应用程序还在使用的时候，就可以启动（原文：another complete version of the app is spun up）另一个完整版本的程序，当准备好以后把流量切换到新的应用程序，再销毁旧的应用程序。但是，升级像HDFS或Cassandra这样的数据工作负载需要把存储节点设置为离线状态，把本地数据持久化以避免数据丢失，执行特定操作序列进行升级，并在升级之前和之后根据每个节点类型执行特殊检查和命令。这些步骤中的所有环节针对特定的应用程序或服务，甚至是特定版本进行的。这使得用常规容器编排调度器管理数据服务变得非常困难。
 
 Mesos具备按需管理每个工作负载的能力，使得许多公司将Mesos作为一个统一的平台，并通过其将微服务和数据服务结合运行。运行数据密集型应用程序的一个通用参考架构是[SMACK stack](https://mesosphere.com/blog/2017/06/21/smack-stack-new-lamp-stack/)。
 

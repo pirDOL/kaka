@@ -1,4 +1,4 @@
-## [How fast is Redis?]()
+## [How fast is Redis?](https://redis.io/topics/benchmarks)
 
 ### TLDR
 

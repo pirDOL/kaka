@@ -1,39 +1,3 @@
-# docker_vs_kubernets_vs_apache_mesos
-supremacy
-religious
-espouse
-heretic
-bunk
-instantiate
-embody
-interoperability 
-initiative
-colocate
-day-two
-evergreen
-spun up
-# whats_a_service_mesh_and_why_do_i_need_one
-lineage n. 血统；家系，[遗] 世系
-dedicated   adj. 专用的
-orchestrate vt. 把…协调地结合起来，[计]容器编排
-pervasive   adj. 普遍的；到处渗透的；流行的
-realm   n. 领域，范围；王国
-advisory    adj. 咨询的；顾问的；劝告的
-staging v. 表演；展现；分阶段进行；筹划
-vet vt. 审查；诊疗
-evict   vt. 驱逐；逐出
-undergo vt. 经历，经受；忍受
-proactive    adj. 前摄的（前一活动中的因素对后一活动造成影响的）；有前瞻性的，先行一步的；积极主动的
-resilience  n. 恢复力；弹力；顺应力
-pointwise   adj. 逐点的
-defining    adj. 最典型的；起决定性作用的
-escalate    vi. 逐步增强；逐步升高
-thriving    adj. 繁荣的；蒸蒸日上的；旺盛的
-nascent adj. 初期的；开始存在的，发生中的
-be poised to    随时准备着
-incarnation     n. 化身；道成肉身；典型
-ultimately  adv. 最后；根本；基本上
-feasible    adj. 可行的；可能的；可实行的
 # saas_paas_iaas_explained_in_one_graphic
 outsourced  adj. 外包的
 dissect v. 仔细分析；解剖
@@ -46,9 +10,7 @@ start from scratch  从头开始；白手起家；从起跑线开始
 drizzle v. 下毛毛雨
 optimal adj. 最佳的
 chilli  n. 红辣椒
-# running_mongodb_queries_concurrently_with_go
-leverage    n. 手段；杠杆 v. 利用
-battle-tested adj. 经过战争考验的 battle-tested soldiers
+
 # top_10_dumb_mistakes_to_avoid_with_C++11_smart_pointers
 godsent	天赐的
 folks	人们 folk art/music/culture/custom/song 民间艺术、音乐、文化、习俗、民歌
@@ -59,30 +21,7 @@ inadvertently	无心地
 outright	完全地
 wingman	驾驶员
 dictate	命令 决定 The teacher dictated a passage to the class. The choice of computer is dictated by our special needs.
-# understanding_hbase_and_bigtable
-wrap one's head/mind around sth comprehend something that one considers challenging, confusing, or a foreign concept. Kate is willing to pay full price for an expensive handbag, but I just can't wrap my head around that. 理解很难理解的事情
-indoctrinated   灌输、教导 The coach tried to indoctrinate the players with the teamwork of attack. 教练试图使他的队员充分熟悉进攻的配合
-make an educated decision about sth learn about the subject before making up your mind
-better off  1. to have more money than you had in the past or more money than most other people 2. to be in a better situation
-terminology 术语
-juncture    时刻
-piecemeal   逐渐、零碎、一个一个的 It was built piecemeal over some 130 years.
-ease into   轻松的加入 This 8-week plan will help you ease into the sport.
-sit atop    坐落在...上 Hbase sits atop either Hadoop's Distributed File System (HDFS) or Amazon's Simple Storage Service (S3)
-stripe  条纹 Data is striped across discs in a RAID system.
-perceive    理解、认识 Stress is widely perceived as contributing to coronary heart disease.
-spacial propinquity 空间临近
-chronological   按照时间顺序
-# openzipkin
-self-contained  You can describe someone or something as self-contained when they are complete and separate and do not need help or resources from outside. 独立自足的 If you have Java 8 or higher installed, the quickest way to get started is to fetch the latest release as a self-contained executable jar
-first things first  the most important thing should be thought about or done before any other. 首先要做的是 You may need to get a better Internet service, but first things first - see if the one you have can do what you want.
-take on 开始做 take on a teaching job 任教
-for instance    例如
-for the sake of 为了
-cardinality 基数
-augmented 扩大，增长 His salary is augmented by a small inheritance. 一小笔遗产增加了他的收入
-nuance  细微差别
-skew    倾斜，偏离
+
 # the_6_month_bug_and_why_i_will_never_abbreviate_variable_names
 prominent   杰出的
 Stealth 秘密的
@@ -93,6 +32,7 @@ hibernating 冬眠的、蛰伏的
 classified  机密的
 suffice it to say   It is enough to say this and no more.
 tweaked the code or parameter   修改代码/参数
+
 # a_little_golang_way
 TLDR    Too long; didn't read (abbreviated tl;dr and tldr;) 1 'the posting above me is way too lengthy to keep my interest', or 2 'here is a summary of the lengthy text that follows'
 memory footprint    内存占用 同类词组：disk footprint、resource footprint
