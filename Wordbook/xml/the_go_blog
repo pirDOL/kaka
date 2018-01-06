@@ -1,11 +1,27 @@
+# job_queues_in_go
+arguably    adv. 正如可提出证据加以证明的那样地
+elaborate   adj. 精心制作的
+irrespective of     不管，不论
+alas    int. 唉（表悲伤、遗憾、恐惧、关切等等）
+plausible   adj. 貌似可信的
+disconcertingly adv. 令人窘迫地
+bail out    跳伞；保释；舀出
+bottom line     底线，总之
+on the face of  从表面上看
+spin off    剥离
+nitty-gritty detail 实质的细节
+couple  vt. 结合；成婚
+
 # running_mongodb_queries_concurrently_with_go
 postpone    vt. 使…延期；把…放在次要地位；把…放在后面
 battle tested   adj. 经过战争考验的
+
 # gobs_of_data
 unashamedly adv. 无愧地；厚颜无耻
 misfeature  n. [美国口语]【计算机】性能不足，令人头痛的性能(设计)
 hood    n. 头巾；引擎盖；兜帽
 innards n. 内脏；内部结构
+
 # constants
 seasoned    经验丰富的
 nasty   adj. 下流的；肮脏的；脾气不好的；险恶的
@@ -20,6 +36,7 @@ wrinkle     n. 皱纹
 litany  n. 冗长而枯燥的陈述；连祷
 coercion    n. 强制；强迫；高压政治；威压
 nutty   adj. 多坚果的；产坚果的；古怪的
+
 # gos_declaration_syntax
 paren   括号
 elaborate   adj. 精心制作的；详尽的；煞费苦心的
@@ -35,6 +52,7 @@ merit   n. 优点，价值；功绩；功过
 bring oneself to    下决心
 disambiguate    消除歧义
 asterisk    n. 星号
+
 # writing_web_applications
 interlude   n. 插曲；穿插；幕间节目；[数] 插算
 sensible    adj. 明智的; 通情达理的; 合乎情理的; 意识到的，能感觉到的;
@@ -42,6 +60,7 @@ mitigate    vt. 使缓和，使减轻
 tackle  vt. 处理（问题）; [足球]抢断; 与...交谈
 spruce up   打扮的整齐漂亮
 enclosed    包围，包住
+
 # errors_are_values
 lament  vi. 哀悼；悲叹
 perception  n. 知觉；[生理] 感觉；看法；洞察力；获取
@@ -57,11 +76,13 @@ clutter n. 杂乱，混乱
 salient adj. 显著的；突出的；跳跃的
 coalesce    vt. 使…联合；使…合并
 all-or-nothing  adj. 孤注一掷的，要么全有要么全无的
+
 # inside_the_go_playground
 stub out    去掉
 stifling    令人窒息的
 is populated with   填充
 provision   规定
+
 # the_first_go_program
 transliterate   按字母直译
 hackery 写代码时hack的方法
@@ -70,6 +91,7 @@ absences    没有，缺乏
 trick   把戏
 stop-gap    权宜之计
 clumsy  笨拙的
+
 # go_fmt_your_code
 minor   次要的
 uncontroversial 减少争论
@@ -78,6 +100,7 @@ aficionados 重度狂热者
 virtue  财富、优点
 comprehensive   全面的、综合的
 daunting    令人胆怯的
+
 # introducing_gofix
 manageable  可控制的
 as much as mechanically possible    尽可能多的
@@ -87,9 +110,11 @@ indispensible  不可或缺的人或物
 unplatable  让人难以接受
 rethink 重新考虑
 would have done     虚拟语气，本应该但实际没有 In particular, the recent reflect changes would have been unpalatable without automated conversion, and the reflect API badly needed to be redone.
+
 # package_names
 judiciously 明智而谨慎地
 stutter 结巴
+
 # json_and_go
 it's a snap to do   It's really easy to do. Nothing to it. It's a snap. A baby could do it.
 resemble    像 She is the very image of her mother. She strongly resembles her mother.
@@ -99,6 +124,7 @@ vital   至关重要的，有活力的
 lest    唯恐，以防。I was afraid to open the door lest he should follow me.
 unwieldy    使用不便的，笨重的。The benefits system is complicated and unwieldy and needs reforming.
 orthogonal  正交的
+
 # a_gif_decoder_an_exercise_in_go_
 vein
 moustachioed
@@ -107,6 +133,7 @@ stitch  v. 缝合 n. 针
 thunderclap n. 霹雳，雷声
 boilerplate n. 样板文件
 sanity  n. 明智；头脑清楚；精神健全；通情达理
+
 # go_maps_in_action
 mediate 调解;调停;斡旋 They mediated a settlement between labour and management.
 one-liner   单行的 it's a one-liner to append a value to a map of slices
@@ -114,6 +141,7 @@ populate    聚居;栖息 If an area is populated by certain people or animals, 
 tally   A tally is a record of amounts or numbers which you keep changing and adding to as the activity which affects it progresses. 记录
 tallies with    与…相符 Her story doesn't tally with his.
 unwieldy    笨重的 this approach becomes unwieldy when adding data
+
 # organizing_go_code
 grab bag    大杂烩
 dilute  稀释
@@ -123,6 +151,7 @@ with that said  照这样说
 clumsier    笨拙的
 for one's sake  为了...
 take precedence 优先，例：What takes precedence in a case of conflict?
+
 # the_cover_story
 sweeping    扫，彻底的 The economic crisis was sweeping the whole of Europe. 
 attest  证明 Police records attest to his long history of violence.
@@ -131,6 +160,7 @@ modest  (数量、比率或改进幅度等) 较小的 Its run-time overhead is t
 payoff  收益 The payoff from an action is the advantage or benefit that you get from 
 demarcated  划分界限
 nuances 细微差别
+
 # A_Short_Survey_of_PProf_Visualization_Tools
 conjecture  猜测
 paramount
@@ -139,6 +169,7 @@ outage
 idempotency
 deliberately 故意地，慎重地 deliberately mystifying 故弄玄虚
 barring 除非，不包括
+
 # profiling_go_programs
 suffice
 reconcile
