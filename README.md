@@ -93,5 +93,5 @@ Kaka is one of my friends, who majored in English during college.
 ### Industry
 * [如何选择使用开源软件建立监控体系](Industry/如何选择使用开源软件建立监控体系.md)
 * [从0到1构建美团压测工具](Industry/从0到1构建美团压测工具.md)
-* [何登成13年开发缩影与阿里数据库内核锤炼之路.md](Industry/何登成13年开发缩影与阿里数据库内核锤炼之路.md)
+* [何登成13年开发缩影与阿里数据库内核锤炼之路](Industry/何登成13年开发缩影与阿里数据库内核锤炼之路.md)
 
