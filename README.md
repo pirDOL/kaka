@@ -5,7 +5,7 @@ This repo contains papers and blogs about CS, translated by myself, aiming to sh
 Kaka is one of my friends, who majored in English during college.
 
 ### [The Go Blog](https://blog.golang.org/)
-### language brick
+### language elements
 * [Effective Go](The-Go-Blog/Effective-Go.md)
 * [Organizing Go code](The-Go-Blog/Organizing-Go-code.md)
 * [Package names](The-Go-Blog/Package-names.md)
@@ -91,7 +91,11 @@ Kaka is one of my friends, who majored in English during college.
 * [SaaS, PaaS and IaaS explained in one graphic](Miscellaneous/SaaS,-PaaS-and-IaaS-explained-in-one-graphic.md)
 
 ### Industry
+#### Database
+* [何登成13年开发缩影与阿里数据库内核锤炼之路](Industry/何登成13年开发缩影与阿里数据库内核锤炼之路.md)
+
+#### SRE
 * [如何选择使用开源软件建立监控体系](Industry/如何选择使用开源软件建立监控体系.md)
 * [从0到1构建美团压测工具](Industry/从0到1构建美团压测工具.md)
-* [何登成13年开发缩影与阿里数据库内核锤炼之路](Industry/何登成13年开发缩影与阿里数据库内核锤炼之路.md)
+* [限流系统](Industry/限流系统.md)
 

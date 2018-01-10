@@ -132,14 +132,7 @@ Worker utilization load shedders reserve workers for critical requests.
 
 为了帮助你开始开发限流器，我们基于Stripe生产环境实际使用的代码，我们创建了一个[gist](https://gist.github.com/ptarjan/e38f45f2dfe601419ca3af937fff574d)分享了一些实现细节。
 
-### 具体实践
-参考4-6。
-
-
 ### 参考
 1. Stripe是美国目前估值最高的Fintech初创公司，Stripe是一家在美国及全球专注支付集成服务的科技创业公司，提供集成银行系统、信用卡系统以及Paypay的支付服务。
 2. [如何设计API的限流(Rate Limit)功能：4种类型限流器图解](https://mp.weixin.qq.com/s?src=3&timestamp=1515499597&ver=1&signature=yO1wZWTzuPKHtHBc*kpq7vTzK8U*Gz7ljQXU6ujD1RKts8vtALehv9ZkVMFfj2pconNnwqBlf8F8tRtkkcxpbEVtOxwUaEGiA7U9HdvtwijOKQuSLbjyU4zgFvpftsHhJLo2ACCikOxbG9o2MULUwkWffJjIObxUrc2BEZydECI=)
 3. [Dark Launching](https://www.quora.com/What-is-a-dark-launch-in-terms-of-continuous-delivery-of-software)
-4. [基于分布式环境下限流系统的设计](https://zhuanlan.zhihu.com/p/31484931?comefrom=http://blogread.cn/news/)
-5. [基于Redis的限流系统的设计](https://mp.weixin.qq.com/s/ewjGZCgc_TUhiZIINCLfbg)
-6. [github.com/juju/ratelimit](https://github.com/juju/ratelimit)
