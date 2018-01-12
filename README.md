@@ -75,6 +75,8 @@ Kaka is one of my friends, who majored in English during college.
 * [Performance Best Practices for MongoDB](Opensource/MongoDB-Performance-Best-Practices.md)
 * [Docker vs. Kubernetes vs. Apache Mesos: Why What You Think You Know is Probably Wrong](Opensource/Docker-vs.-Kubernetes-vs.-Apache-Mesos-Why-What-You-Think-You-Know-is-Probably-Wrong.md)
 * [What's a Service Mesh? And Why Do I Need One?](Opensource/What's-a-Service-Mesh-And-Why-Do-I-Need-One.md)
+* [Thread Pools in NGINX Boost Performance 9x!](Opensource/Thread-Pools-in-NGINX-Boost-Performance-9x.md)
+* [Distributed locks with Redis](Opensource/Distributed-locks-with-Redis.md)
 
 ### Miscellaneous
 * [6 Tips to supercharge C++11 vector performance](Miscellaneous/6-Tips-to-supercharge-C++11-vector-performance.md)
