@@ -93,12 +93,9 @@ Kaka is one of my friends, who majored in English during college.
 * [SaaS, PaaS and IaaS explained in one graphic](Miscellaneous/SaaS,-PaaS-and-IaaS-explained-in-one-graphic.md)
 
 ### Industry
-#### Database
 * [何登成13年开发缩影与阿里数据库内核锤炼之路](Industry/何登成13年开发缩影与阿里数据库内核锤炼之路.md)
-
-#### SRE
-* [如何选择使用开源软件建立监控体系](Industry/如何选择使用开源软件建立监控体系.md)
-* [从0到1构建美团压测工具](Industry/从0到1构建美团压测工具.md)
+* [监控](Industry/监控.md)
+* [压测](Industry/压测.md)
 * [限流系统](Industry/限流系统.md)
 * [软技能](Industry/软技能.md)
 
