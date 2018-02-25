@@ -96,6 +96,6 @@ Kaka is one of my friends, who majored in English during college.
 * [何登成13年开发缩影与阿里数据库内核锤炼之路](Industry/何登成13年开发缩影与阿里数据库内核锤炼之路.md)
 * [监控](Industry/监控.md)
 * [压测](Industry/压测.md)
-* [限流系统](Industry/限流系统.md)
+* [限流](Industry/限流.md)
 * [软技能](Industry/软技能.md)
 

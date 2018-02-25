@@ -171,3 +171,6 @@ errors包的行为对底层系统的数据类型存在一定的耦合和依赖�
 
 错误信息不仅仅是给程序员的，也是给用户看的。
 
+### 参考
+[Hacker News上的讨论](https://news.ycombinator.com/item?id=15867015)
+
