@@ -35,6 +35,8 @@ Kaka is one of my friends, who majored in English during college.
 * [Introducing the Go Race Detector](The-Go-Blog/Introducing-the-Go-Race-Detector.md)
 * [Death of goroutines under control](The-Go-Blog/Death-of-goroutines-under-control.md)
 * [Job Queues in Go](The-Go-Blog/Job-Queues-in-Go.md)
+* [Visualizing Concurrency in Go](The-Go-Blog/Visualizing-Concurrency-in-Go.md)
+* [The Go scheduler](The-Go-Blog/The-Go-scheduler.md)
 
 #### cgo
 * [Command cgo](The-Go-Blog/Command-cgo.md)
@@ -68,6 +70,7 @@ Kaka is one of my friends, who majored in English during college.
 * [Dapper: a Large-Scale Distributed Systems Tracing Infrastructure](Papers/Dapper-a-Large-Scale-Distributed-Systems-Tracing-Infrastructure.md)
 * [Large-scale cluster management at Google with Borg](Papers/Large-scale-cluster-management-at-Google-with-Borg.md)
 * [Thrift: Scalable Cross-Language Services Implementation](Papers/Thrift-Scalable-Cross-Language-Services-Implementation.md)
+* [Design Patterns for Container-based Distributed Systems](Papers/Design-Patterns-for-Container-based-Distributed-Systems.md)
 
 ### Opensource
 * [OpenZipkin A distributed tracing system](Opensource/OpenZipkin-A-distributed-tracing-system.md)
