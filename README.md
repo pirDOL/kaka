@@ -1,5 +1,4 @@
 # Kaka
-
 This repo contains papers and blogs about CS, translated by myself, aiming to share with others as well as to practice my poor reading skills.
 
 Kaka is one of my friends, who majored in English during college.
@@ -21,6 +20,8 @@ Kaka is one of my friends, who majored in English during college.
 * [Go's Declaration Syntax](The-Go-Blog/Gos-Declaration-Syntax.md)
 * [Constants](The-Go-Blog/Constants.md)
 * [Gobs of data](The-Go-Blog/Gobs-of-data.md)
+* [The Go scheduler](The-Go-Blog/The-Go-scheduler.md)
+* [The Go netpoller](The-Go-Blog/The-Go-netpoller.md)
 
 #### go test
 * [Testable Examples in Go](The-Go-Blog/Testable-Examples-in-Go.md)
@@ -36,7 +37,6 @@ Kaka is one of my friends, who majored in English during college.
 * [Death of goroutines under control](The-Go-Blog/Death-of-goroutines-under-control.md)
 * [Job Queues in Go](The-Go-Blog/Job-Queues-in-Go.md)
 * [Visualizing Concurrency in Go](The-Go-Blog/Visualizing-Concurrency-in-Go.md)
-* [The Go scheduler](The-Go-Blog/The-Go-scheduler.md)
 
 #### cgo
 * [Command cgo](The-Go-Blog/Command-cgo.md)
@@ -96,7 +96,7 @@ Kaka is one of my friends, who majored in English during college.
 * [SaaS, PaaS and IaaS explained in one graphic](Miscellaneous/SaaS,-PaaS-and-IaaS-explained-in-one-graphic.md)
 
 ### Industry
-* [何登成13年开发缩影与阿里数据库内核锤炼之路](Industry/何登成13年开发缩影与阿里数据库内核锤炼之路.md)
+* [数据库](Industry/数据库.md)
 * [监控](Industry/监控.md)
 * [压测](Industry/压测.md)
 * [限流](Industry/限流.md)
