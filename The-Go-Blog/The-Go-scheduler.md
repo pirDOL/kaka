@@ -3,105 +3,90 @@
 30 JUNE 2013 By Daniel Morsing
 
 ### TLDR
+1. why
+    1. linux上线程和进程都是通过task_struct实现的，但是Go不需要这种实现带来的特性，当goroutine超过100k时会显著增加开销。
+    2. GC需要线程的内存得到一致性状态才能进行，Go的调度器能感知这一点
+2. casts
+    1. M: machine, os thread, This handling of syscalls is why Go programs run with multiple threads, even when GOMAXPROCS is 1. 
+    3. G: goroutines, local runqueue, global mutex contention
+    2. P: processor, context running goroutine, GOMAXPROCS(), The reason we have contexts is so that we can hand them off to other threads if the running thread needs to block for some reason.
+3. syscall：
+    1. 调用syscall阻塞的goroutine继续在当前线程阻塞，等syscall返回时
+        1. goroutine进入全局runqueue，等待其他context获取
+        2. 当前线程放回线程池
+    2. 当前线程上的context切换到另一个线程中继续执行runqueue中其他的goroutine
+4. context的runqueue都执行完了，按照优先级：
+    1. 从全局runqueue获取等待执行的goroutine
+    2. 从其他context的runqueue中获取一半的goroutine，获取一半是均衡了负载，保证了同一时间有`GOMAXPROCS`个context在执行goroutine
 
 ### 翻译
+#### 简介
+Go 1.1最大的功能之一就是Dmitry Vyukov实现的新调度器。它显著提升了Go并发程序的性能，并且基本上已经没啥可以优化的了。我发现我应该写一点关于新调度器的文章。
+
+这篇博客中的大多数内容都在[原始设计文档](https://docs.google.com/document/d/1TTj4T2JO42uD5ID9e89oa0sLKhJYD0Y_kqxDv3I3XMw)中描述了。这是一个相当详细的文档，但是有些太技术了。
+
+所有你需要了解的关于新调度器的内容都在设计文档中，但是这篇博客比设计文档更好的地方是有图片。
+
+#### 为什么Go的运行时需要一个调度器？
+在我们看新调度器之前我们要理解为什么需要它。为什么操作系统能调度线程还需要创建一个用户态的调度器？
+
+POSIX线程API是对unix现有进程模型的逻辑扩展，因此线程和进程在很多方面都类似。例如，线程有自己的信号掩码、CPU亲和性，可以被放到cgroup，可以查询它们使用的资源。但是有很多特性对于Go程序来说都不需要，并且当线程数很多时反而会增加开销。
+
+另外一个问题是操作系统不能结合Go程序的内存模型进行调度决策。例如，Go在进行垃圾回收需要所有运行的线程都停止，使得内存处于一致的状态。这就要求调度器要能知道当前正在执行的线程运行到了内存一致性的暂停点。
+
+当程序有很多随机调度的线程，你需要等待它们都执行到一个一致性的状态。Go的调度器可以感知到内存是否达到一致性状态，并根据这个进行调度决策。这就意味着当停止程序的运行，进行垃圾回收时，我们只需要等待正在CPU上执行的线程（达到一致性状态）。
+>When you have many threads scheduled out at random points, chances are that you're going to have to wait for a lot of them to reach a consistent state. The Go scheduler can make the decision of only scheduling at points where it knows that memory is consistent. This means that when we stop for garbage collection, we only have to wait for the threads that are being actively run on a CPU core.
+
+#### Our Cast of Characters（调度器中的角色）
+有三种常见的线程模型：
+    * N:1：N个用户态线程在1个内核态线程上运行。这种模型上下文切换非常快但是无法利用多核系统。
+    * 1:1：1个用户态线程在1个内核态线程。这种充分利用了机器上的多核但是上下文切换非常慢，因为每一次调度都会在用户态和内核态之间切换。
+    * M:N：Go尝试兼顾多核和调度上下文切换，因此选择了M:N模型，任意数量的goroutine可以在任意数量的操作系统线程（译者注：见下面M的解释）上执行。既能享受到快速的上下文切换，又能利用系统中的多核。这种模型的主要缺点是调度器实现比较复杂。
+
+为了实现M:N的调度任务，Go的调度器使用了三种实体：M、P、G：
 ![](The-Go-scheduler/our-cast.ipg)
+
+* M：三角形，代表操作系统线程，**它的执行由操作系统来管理，很类似于标准的POSIX线程**。在Go的运行时代码中M是machine的简写。
+* G：圆形，代表goroutine，它拥有自己的栈，程序计数器和必要的调度信息（如阻塞在哪些channel上）。在Go的运行时代码中G是goroutine的简写。
+* P：矩形，代表调度的上下文。可以把它看作是一个局部的调度器，在一个单独的线程上执行的Go代码。**这是让Go从N:1调度器进化为M:N调度器的关键**。在Go的运行时代码中M是processor的简写。
+
 ![](The-Go-scheduler/in-motion.ipg)
+
+如上图所示，有两个线程M，每个线程运行了一个goroutine G，所以必须得维持一个上下文P。
+
+上下文的数量由启动时通过环境变量`GOMAXPROCS`或者是由`runtime.GOMAXPROCS()`方法设置。通常在程序执行的过程中，这个数字不发生变化。这意味着在任意时刻最多只有`GOMAXPROCS`个goroutine在同时运行Go代码（译者注：这只是Go的调度器的限制，操作系统调度可能使得同一时间正在执行的线程数比`GOMAXPROCS`少，同一时间执行的线程数最多不超过CPU逻辑核数）。你可以通过这个参数对Go进程在不同的机器上的调用进行调优，例如在一个4核的PC上，同一时间只能有4个线程同时执行Go代码。
+
+灰色的goroutine没有在运行，等待被调度。它们被维护在一个叫做runqueues的队列中。当通过`go`语句创建一个goroutine时，会把它添加到队列尾。当正在运行的goroutine遇到调度点时，就从队列中弹出一个新的goroutine。
+
+为了避免锁的争抢，每一个context拥有一个局部的runqueue。之前版本的Go调度器只有一个全局的带有互斥锁的runqueue，这样线程经常被阻塞在这个锁上，在多核机器上性能表现及其差。
+
+调度器工作在一个稳定循环中：保证所有的P都有goroutine在执行。然而会有些特殊的场景。
+
+#### Who you gonna (sys)call?
+你可能会疑惑为什么需要维护多个context，能不能让操作系统的线程直接管理runqueue？不能，我们引入context的目的是当一个操作系统的线程被阻塞时，我们可以把这个线程上的context移到其它的线程中去。操作系统线程阻塞的一个典型场景就是系统调用。操作系统的线程执行系统阻塞时就会被操作系统调度让出CPU，这时我们需要把因为执行系统调用阻塞的goroutine切换到其他线程，而当前线程继续执行其他的goroutine。
+
 ![](The-Go-scheduler/syscall.ipg)
+
+如上图所示，当一个线程M0要被阻塞时，M
+0会放弃P，让P去另一个线程M1上继续运行。Go的调度器保证了拥有足够的线程运行`GOMAXPROCS()`指定数量的context。上图中的M1线程可能是为了处理系统调用新创建的，也可能是线程池中的空闲线程。因为M0上的goroutine执行了系统调用，M0会被操作系统挂起。
+
+当syscall返回时，M0会尝试获取一个context来运行G0。一般情况下，它会从其它内核线程偷一个过来。如果没有偷到，它会把G0放到一个全局的runqueue内，将自己放回线程池，进入睡眠状态。
+
+当context运行完所有的本地runqueue时，它会从全局runqueue拉取goroutine。context也会周期性检查全局runqueue是否存在goroutine，以防止全局runqueue中的goroutine饿死。
+
+为了处理系统调用，即使设置了`GOMAXPROCS`为1，Go程序也是多线程的。The runtime uses goroutines that call syscalls, leaving threads behind.
+
+#### Stealing work
+另外一种导致调度器稳定工作状态改变的情况就是某个context的所有都goroutine运行完了。这种情况会在context的runqueue数量不平衡时出现，这种情况会导致没有goroutine的context提前结束，但是其实系统中还有其他可以执行的goroutine。为了确保context能执行Go代码，context除了在本地runqueue为空时可以从全局runqueue中获得goroutine以外，还需要从其它的地方获取goroutine，显然除了全局runqueue，还可以从其他context的runqueue获取goroutine。
+
+如图所示，context会尝试从其它context的runqueue里面偷一半的goroutine。这样就能确保每个context都有goroutine执行，从而所有的线程都能以最大负荷运行。
+
 ![](The-Go-scheduler/steal.ipg)
 
-介绍
-Go 1.1版本号最大的特性之中的一个就是一个新的调度器，由Dmitry Vyukov贡献。
+#### 接下来
+关于调度器还有很多细节，例如cgo里面的线程、`LockOSThread()`函数以及和netpoller线程。这些超出了这篇博客的范围，但是仍然值得学习。我后面会介绍这些。在Go的运行时库中肯定有很多有意思的结构。
 
-这个新的调度器为并行Go程序带来了令人激动、无以后继的性能提升。我认为我应该为之写点什么东西。
-
-这篇博客的大部分内容都已经在这篇原始设计文档中描写叙述过了，这是一份相当好理解的文章。可是略显技术性。
-
-尽管该设计文档已经包括了关于新调度器你所须要知道的一切。但本篇博文包括图片，所以非常明显它略胜一筹。
-
-为什么Go执行时须要一个调度器
-在我们研究这个新调度器之前，我们须要搞清楚为什么须要它，为什么要制造一个用户空间的调度器。即使操作系统已经能为你调度线程。
-
-POSIX线程API非常大程度上是现有UNIX进程模型的逻辑扩展，线程拥有很多与进程同样的控制。线程有自己的信号掩码，能够设置CPU亲和力，能够被分组到cgroups，也能够查询它们使用了哪些资源。
-
-全部这些控制由于一些Go语言使用Goroutine时并不须要的特性而添加了开销，而且当你的程序有10万个线程时这些开销就高速叠加起来。
-
-还有一个问题是操作系统无法做出通知的调度决策，基于Go的模型。比方，Go的垃圾收集器须要在收集时全部线程都停止，而且内存须要处于一致的状态。
-
-这涉及到等待执行中的线程达到我们所知的内存一致的点。
-
-当你有非常多线程须要随机调度的时候，非常大的可能性你须要等待很多线程已达到一致的状态。
-
-Go的调度器能够做出决策，仅仅在当他知道内存已经一致的时候进行调度。
-
-这意味着当我们由于垃圾收集而停下来时，我们仅仅须要等待那些正在CPU内核中执行的线程。
-
-我们的角色
-线程通常有3种模型：一个是N:1模型，该模型中多个用户线程执行在一个内核线程中。这样的模型的好处在于上下文切换非常快，可是无法充分利用多核线程。还有一个是1:1模型，当中一个执行线程相应一个系统线程。该模型充分利用机器上的多个核心，可是上下文切换非常慢，由于须要陷入内核。
-
-Go採用M:N的模型，尝试取两者的好处。它在随意数量的系统线程上调度随意数量的用户线程，这样你不仅能够获得非常快的上下文切换，也能够充分利用你系统的多核。这样的方式的主要缺点是给调度器带来的复杂性。
-
-为了完毕调度的任务，Go调度器使用到了3个实体： 
-Go调度器3个实体
-
-三角形表示系统线程，它由操作系统管理的，行为非常像POSIX线程。在执行时代码中，它被称为M（Machine，机器）。 
-圆圈表示一个goroutine。它包括了栈，指令指针，以及其它对调度goroutine非常重要的信息，比如其堵塞的channel。在执行时代码中。称作G。 
-矩形表示调度的上下文。
-
-你能够把它看成是在单个线程中执行Go代码的调度器的本地版本号。
-
-它是让我们从N:1调度到M:N调度的重要部分。在执行时代码中。称作P（Processor，处理器）。
-
-
-
-图中我们看到有2个线程（M），每一个线程都持有一个上下文（P）。每一个上下文都执行着一个goroutine（G）。为了执行goroutines，每一个线程都必须持有一个上下文。
-
-上下文的数量是在启动时被设置为环境变量GOMAXPROCS的值，或者通过执行时调用函数GOMAXPROCS()进行设置。
-
-一般来说，这个值在程序执行过程中不会改变。上下文数量固定意味着随意时刻仅仅有GOMAXPROCS个线程在执行go代码。
-
-我们能够利用这一点依据不同机器调节go进程的调用。比如在4核的CPU上用4个线程执行go代码。
-
-灰色的goroutine是没在执行中的，但等待着被调度。它们被安排在一个称为runqueues的列表中。当一个goroutine执行go表达式时，goroutines被加入到列表的末尾。当一个上下文执行goroutine到调度点时，它从它的runqueues中弹出一个goroutine。设置栈和指令指针，然后開始执行这个goroutine。
-
-为了打破相互排斥，每一个上下文有自己的本地runqueues。
-
-前一个版本号的go调度器仅仅有一个全局的runqueues以及一个相互排斥锁来保护它。线程常常被堵塞，等待相互排斥锁释放接触堵塞。假设你的机器有32个核心，这将变得非常低效。
-
-仅仅要全部上下文都有goroutine能够执行，go的调度器就会依照这样的稳定的状态进行调度。
-
-然而，存在几种例外的情况。
-
-你要（系统）调用谁？
-如今你可能会好奇，究竟为什么要上下文？难道我们不能抛弃上下文，直接把runqueues放在线程上吗？不尽然。我们之所以须要上下文，是由于我们能够在当前执行中的线程须要堵塞时把上下文交给其它线程。 
-须要堵塞的一个样例是我们进行系统调用。由于线程不能既执行代码又堵塞于系统调用，我们须要交接上下文。以继续进行调度。
-
-
- 
-上图我们能够看到。一个线程放弃了它的上下文，好让其它线程能够执行之。调度器保证有足够的线程来执行全部上下文。插图中的M1可能刚刚被创建，用于处理这个系统调用。或者它来自于线程缓存。
-
-执行系统调用的线程会继续持有产生系统调用的goroutine。由于从技术上讲它扔在执行，仅仅是堵塞在操作系统中了。
-
-当系统调用返回时。线程必须尝试获得上下文。才得以继续执行返回的goroutine。通常的操作模式从其它线程那偷取一个上下文。
-
-假设偷取失败，它会把goroutine放到全局的runqueue，将自己进入线程缓存然后睡眠。
-
-当上下文的本地runqueue为空时，就会到全局的runqueue去拉取。上下文也会定期检查全局runqueue，否则全局runqueue中的goroutine可能永远都不能执行终于饿死。
-
-偷取工作
-系统的稳定状态改变的还有一种情况是当当中一个上下文的runqueue为空。没有goroutine能够调度。这在上下文之间的runqueues不平衡的情况下可能发生。
-
-这可能导致上下文耗尽其runqueue而系统仍然有工作要完毕。
-
-为了继续执行go代码，上下文能够从全局runqueue中获取goroutine，可是假设当中没有goroutines，上下文就须要从别的地方获取。
-
-
-
-所谓别的地方即是其它的上下文。
-
-当一个上下文耗完其goroutines时，它会从另外一个上下文偷取一半的goroutine。
-
-这保证了每一个上下文总是有活儿能够干，从而保证了全部线程都以其最大的能力工作着。
 
 ### 参考
 [[翻译]Go语言调度器](https://www.cnblogs.com/lcchuguo/p/5197957.html)
+[Golang调度器](https://www.jianshu.com/p/aada4328ddf4)
