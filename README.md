@@ -94,6 +94,7 @@ Kaka is one of my friends, who majored in English during college.
 * [Understanding git for real by exploring the .git directory](Miscellaneous/Understanding-git-for-real-by-exploring-the-git-directory.md)
 * [Git rebase and the golden rule explained.](Miscellaneous/Git-rebase-and-the-golden-rule-explained.md)
 * [SaaS, PaaS and IaaS explained in one graphic](Miscellaneous/SaaS,-PaaS-and-IaaS-explained-in-one-graphic.md)
+* [Zero Copy I: User-Mode Perspective](Miscellaneous/Zero-Copy-I-User-Mode-Perspective.md)
 
 ### Industry
 * [数据库](Industry/数据库.md)
