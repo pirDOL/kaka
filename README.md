@@ -99,7 +99,8 @@ Kaka is one of my friends, who majored in English during college.
 ### Industry
 * [数据库](Industry/数据库.md)
 * [监控](Industry/监控.md)
-* [压测](Industry/压测.md)
+* [配置中心](Industry/配置中心.md)
 * [限流](Industry/限流.md)
+* [压测](Industry/压测.md)
 * [软技能](Industry/软技能.md)
 
